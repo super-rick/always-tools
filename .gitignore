@@ -4,3 +4,10 @@
 .idea/
 .vscode/
 promotion/
+
+# wrangler files
+.wrangler
+.dev.vars*
+!.dev.vars.example
+.env*
+!.env.example
