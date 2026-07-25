@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Always Tools — Free Online Tools for Developers</title>
+  <meta name="description" content="Free online tools: JSON formatter, Base64 encoder, URL decoder, QR code generator, hash generator, UUID generator, and more. No signup required.">
+  <link rel="canonical" href="https://always.tools/">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"Always Tools","url":"https://always.tools"}</script>
+  <style>
+    :root {
+      --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
+      --primary: #2563eb; --primary-h: #1d4ed8;
+      --border: #e5e7eb; --card: #f9fafb; --danger: #ef4444;
+      --success: #10b981; --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+           background: #f5f5f7; color: var(--text); line-height:1.6; min-height:100vh;
+           display:flex; flex-direction:column; }
+    .container { max-width:960px; margin:0 auto; padding:0 20px; width:100%; }
+    header { background:var(--bg); border-bottom:1px solid var(--border); padding:16px 0; }
+    header .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:22px; font-weight:700; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .logo span { color:var(--primary); }
+    .nav-links { display:flex; gap:20px; }
+    .nav-links a { color:var(--text2); text-decoration:none; font-size:14px; transition:color .2s; }
+    .nav-links a:hover { color:var(--primary); }
+    main { flex:1; padding:40px 0; }
+    .tool-card { background:var(--bg); border-radius:var(--radius); box-shadow:var(--shadow);
+                 padding:24px; }
+    .tool-card h1 { font-size:24px; margin-bottom:8px; }
+    .tool-card .desc { color:var(--text2); margin-bottom:20px; font-size:14px; }
+    textarea, input[type="text"], input[type="url"] { width:100%; padding:12px 16px;
+      border:2px solid var(--border); border-radius:8px; font-size:14px; font-family:'SF Mono',Menlo,Consolas,monospace;
+      resize:vertical; min-height:120px; transition:border-color .2s; background:var(--bg); }
+    textarea:focus, input:focus { outline:none; border-color:var(--primary); }
+    textarea.output { background:#f8fafc; }
+    .btn-row { display:flex; gap:10px; margin:16px 0; flex-wrap:wrap; }
+    .btn { padding:10px 20px; border:none; border-radius:8px; font-size:14px; font-weight:500;
+           cursor:pointer; transition:all .2s; }
+    .btn-primary { background:var(--primary); color:#fff; }
+    .btn-primary:hover { background:var(--primary-h); }
+    .btn-secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+    .btn-secondary:hover { background:var(--border); }
+    .btn-danger { background:var(--danger); color:#fff; }
+    .stats { display:flex; gap:20px; margin-top:12px; font-size:13px; color:var(--text2); }
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:24px 0; margin-top:40px; }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    footer, footer a { color:var(--text2); font-size:13px; text-decoration:none; }
+    .related { margin-top:24px; padding-top:16px; border-top:1px solid var(--border); }
+    .related h3 { font-size:14px; margin-bottom:8px; }
+    .related-links { display:flex; flex-wrap:wrap; gap:8px; }
+    .related-links a { color:var(--primary); font-size:13px; }
+    .tab { padding:8px 16px; border:none; background:none; cursor:pointer; font-size:14px;
+           border-bottom:2px solid transparent; color:var(--text2); }
+    .tab.active { color:var(--primary); border-bottom-color:var(--primary); font-weight:500; }
+    @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
+
+
+    .tgrid { display:grid; grid-template-columns:repeat(auto-fill,minmax(280px,1fr)); gap:16px; margin-bottom:32px; }
+    .tcard { background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:18px;
+             text-decoration:none; color:var(--text); display:flex; gap:14px; align-items:flex-start;
+             transition:all .2s; }
+    .tcard:hover { border-color:var(--primary); box-shadow:0 4px 12px rgba(37,99,235,0.1); transform:translateY(-1px); }
+    .tcard-icon { font-size:28px; flex-shrink:0; margin-top:2px; }
+    .tcard strong { display:block; font-size:16px; margin-bottom:4px; }
+    .tcard p { font-size:13px; color:var(--text2); margin-bottom:8px; }
+    .tcard-tags { display:flex; flex-wrap:wrap; gap:4px; }
+    .pill { font-size:11px; background:var(--card); color:var(--text2); padding:2px 8px; border-radius:12px; }
+    .search-wrap { margin-bottom:24px; }
+    .search-wrap input { min-height:48px; font-size:16px; }
+    .coming-soon { margin-top:40px; }
+    .coming-soon h3 { font-size:16px; margin-bottom:12px; }
+    .coming-list { display:flex; flex-wrap:wrap; gap:12px; }
+    .coming-list span { background:var(--card); padding:8px 16px; border-radius:20px; font-size:13px; color:var(--text2); }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo"><span>⚡</span> Always Tools</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/json-formatter.html">JSON</a>
+        <a href="/base64.html">Base64</a>
+        <a href="/url-encode.html">URL</a>
+        <a href="/timestamp.html">Timestamp</a>
+        <a href="/qrcode.html">QR Code</a>
+        <a href="/md5.html">Hash</a>
+        <a href="/uuid.html">UUID</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="tool-card">
+        <h1>Always the right tool for the job.</h1>
+        <p class="desc" style="font-size:15px;max-width:600px;margin-bottom:28px;">
+          Free online tools for developers and everyday use. No ads, no tracking, no signup.
+          Everything runs in your browser.
+        </p>
+        <div class="search-wrap">
+          <input type="text" id="search" placeholder="Search tools... (e.g. JSON, Base64, QR Code)" oninput="filterTools()">
+        </div>
+        <div class="tgrid" id="tgrid">
+          
+      <a href="json-formatter.html" class="tcard">
+        <span class="tcard-icon">🔤</span>
+        <div>
+          <strong>JSON Formatter</strong>
+          <p>Format, validate, and minify JSON data online</p>
+          <div class="tcard-tags"><span class="pill">json</span><span class="pill">formatter</span><span class="pill">beautify</span><span class="pill">minify</span></div>
+        </div>
+      </a>
+      <a href="base64.html" class="tcard">
+        <span class="tcard-icon">🔐</span>
+        <div>
+          <strong>Base64 Encoder</strong>
+          <p>Encode and decode Base64 strings and files</p>
+          <div class="tcard-tags"><span class="pill">base64</span><span class="pill">encode</span><span class="pill">decode</span><span class="pill">image</span></div>
+        </div>
+      </a>
+      <a href="url-encode.html" class="tcard">
+        <span class="tcard-icon">🔗</span>
+        <div>
+          <strong>URL Encoder</strong>
+          <p>URL encode and decode special characters</p>
+          <div class="tcard-tags"><span class="pill">url</span><span class="pill">encode</span><span class="pill">decode</span><span class="pill">percent</span></div>
+        </div>
+      </a>
+      <a href="timestamp.html" class="tcard">
+        <span class="tcard-icon">⏰</span>
+        <div>
+          <strong>Timestamp Converter</strong>
+          <p>Convert Unix timestamps to human-readable dates</p>
+          <div class="tcard-tags"><span class="pill">timestamp</span><span class="pill">unix</span><span class="pill">epoch</span><span class="pill">date</span></div>
+        </div>
+      </a>
+      <a href="qrcode.html" class="tcard">
+        <span class="tcard-icon">📱</span>
+        <div>
+          <strong>QR Code Generator</strong>
+          <p>Generate QR codes from text or URLs, download as PNG</p>
+          <div class="tcard-tags"><span class="pill">qr</span><span class="pill">code</span><span class="pill">barcode</span><span class="pill">scan</span></div>
+        </div>
+      </a>
+      <a href="md5.html" class="tcard">
+        <span class="tcard-icon">🔒</span>
+        <div>
+          <strong>Hash Generator</strong>
+          <p>Generate SHA-1, SHA-256, SHA-512 hashes</p>
+          <div class="tcard-tags"><span class="pill">hash</span><span class="pill">sha256</span><span class="pill">sha1</span><span class="pill">sha512</span></div>
+        </div>
+      </a>
+      <a href="uuid.html" class="tcard">
+        <span class="tcard-icon">🎲</span>
+        <div>
+          <strong>UUID Generator</strong>
+          <p>Generate random UUID v4 identifiers</p>
+          <div class="tcard-tags"><span class="pill">uuid</span><span class="pill">guid</span><span class="pill">unique</span><span class="pill">id</span></div>
+        </div>
+      </a>
+        </div>
+        <div class="coming-soon">
+          <h3>Coming Soon</h3>
+          <div class="coming-list">
+            <span>🖼️ Image Compressor</span>
+            <span>📝 Regex Tester</span>
+            <span>🎨 Color Converter</span>
+            <span>🇨🇳 Pinyin Converter</span>
+            <span>📅 Lunar Calendar</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span>&copy; 2026 Always Tools</span>
+      <span><a href="/privacy.html">Privacy</a> · <a href="/about.html">About</a></span>
+    </div>
+  </footer>
+  <script>
+    function filterTools() {
+      const q = document.getElementById('search').value.toLowerCase();
+      document.querySelectorAll('.tcard').forEach(c => {
+        c.style.display = c.textContent.toLowerCase().includes(q) ? '' : 'none';
+      });
+    }
+</script>
+</body>
+</html>

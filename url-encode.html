@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>URL Encoder — Online URL Decode & Encode | Always Tools</title>
+  <meta name="description" content="Free online URL encoder and decoder. Encode special characters for URLs or decode percent-encoded strings.">
+  <link rel="canonical" href="https://always.tools/url-encode.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL Encoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}</script>
+  <style>
+    :root {
+      --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
+      --primary: #2563eb; --primary-h: #1d4ed8;
+      --border: #e5e7eb; --card: #f9fafb; --danger: #ef4444;
+      --success: #10b981; --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+           background: #f5f5f7; color: var(--text); line-height:1.6; min-height:100vh;
+           display:flex; flex-direction:column; }
+    .container { max-width:960px; margin:0 auto; padding:0 20px; width:100%; }
+    header { background:var(--bg); border-bottom:1px solid var(--border); padding:16px 0; }
+    header .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:22px; font-weight:700; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .logo span { color:var(--primary); }
+    .nav-links { display:flex; gap:20px; }
+    .nav-links a { color:var(--text2); text-decoration:none; font-size:14px; transition:color .2s; }
+    .nav-links a:hover { color:var(--primary); }
+    main { flex:1; padding:40px 0; }
+    .tool-card { background:var(--bg); border-radius:var(--radius); box-shadow:var(--shadow);
+                 padding:24px; }
+    .tool-card h1 { font-size:24px; margin-bottom:8px; }
+    .tool-card .desc { color:var(--text2); margin-bottom:20px; font-size:14px; }
+    textarea, input[type="text"], input[type="url"] { width:100%; padding:12px 16px;
+      border:2px solid var(--border); border-radius:8px; font-size:14px; font-family:'SF Mono',Menlo,Consolas,monospace;
+      resize:vertical; min-height:120px; transition:border-color .2s; background:var(--bg); }
+    textarea:focus, input:focus { outline:none; border-color:var(--primary); }
+    textarea.output { background:#f8fafc; }
+    .btn-row { display:flex; gap:10px; margin:16px 0; flex-wrap:wrap; }
+    .btn { padding:10px 20px; border:none; border-radius:8px; font-size:14px; font-weight:500;
+           cursor:pointer; transition:all .2s; }
+    .btn-primary { background:var(--primary); color:#fff; }
+    .btn-primary:hover { background:var(--primary-h); }
+    .btn-secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+    .btn-secondary:hover { background:var(--border); }
+    .btn-danger { background:var(--danger); color:#fff; }
+    .stats { display:flex; gap:20px; margin-top:12px; font-size:13px; color:var(--text2); }
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:24px 0; margin-top:40px; }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    footer, footer a { color:var(--text2); font-size:13px; text-decoration:none; }
+    .related { margin-top:24px; padding-top:16px; border-top:1px solid var(--border); }
+    .related h3 { font-size:14px; margin-bottom:8px; }
+    .related-links { display:flex; flex-wrap:wrap; gap:8px; }
+    .related-links a { color:var(--primary); font-size:13px; }
+    .tab { padding:8px 16px; border:none; background:none; cursor:pointer; font-size:14px;
+           border-bottom:2px solid transparent; color:var(--text2); }
+    .tab.active { color:var(--primary); border-bottom-color:var(--primary); font-weight:500; }
+    @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
+
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo"><span>⚡</span> Always Tools</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/json-formatter.html">JSON</a>
+        <a href="/base64.html">Base64</a>
+        <a href="/url-encode.html">URL</a>
+        <a href="/timestamp.html">Timestamp</a>
+        <a href="/qrcode.html">QR Code</a>
+        <a href="/md5.html">Hash</a>
+        <a href="/uuid.html">UUID</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="tool-card">
+        <h1>URL Encoder / Decoder</h1>
+        <p class="desc">Encode special characters for URLs or decode percent-encoded strings.</p>
+        <textarea id="input" placeholder="Enter URL or text to encode/decode..."></textarea>
+        <div class="btn-row">
+          <button class="btn btn-primary" onclick="urlEncode()">Encode</button>
+          <button class="btn btn-secondary" onclick="urlDecode()">Decode</button>
+          <button class="btn btn-secondary" onclick="copyOutput()">Copy</button>
+          <button class="btn btn-secondary" onclick="swapIO()">⇄ Swap</button>
+        </div>
+        <textarea id="output" class="output" placeholder="Result..." readonly></textarea>
+      </div>
+      <div class="related">
+      <h3>You might also need:</h3>
+      <div class="related-links">
+        <a href="/json-formatter.html">JSON Formatter</a>
+        <a href="/base64.html">Base64 Encode</a>
+        <a href="/url-encode.html">URL Encode</a>
+        <a href="/timestamp.html">Timestamp</a>
+        <a href="/qrcode.html">QR Code</a>
+        <a href="/md5.html">Hash Generator</a>
+        <a href="/uuid.html">UUID Generator</a>
+      </div>
+    </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span>&copy; 2026 Always Tools</span>
+      <span><a href="/privacy.html">Privacy</a> · <a href="/about.html">About</a></span>
+    </div>
+  </footer>
+<script>
+    const input = document.getElementById('input');
+    const output = document.getElementById('output');
+    function urlEncode() { output.value = encodeURIComponent(input.value); }
+    function urlDecode() {
+      try { output.value = decodeURIComponent(input.value); }
+      catch(e) { output.value = 'Error: ' + e.message; }
+    }
+    function copyOutput() { if(output.value) navigator.clipboard.writeText(output.value); }
+    function swapIO() { const t=input.value; input.value=output.value; output.value=t; }
+</script>
+</body>
+</html>
