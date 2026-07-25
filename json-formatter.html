@@ -11,7 +11,14 @@
     .status { padding:8px 0; font-size:13px; min-height:24px; }
     .status.error { color:var(--danger); }
     .status.success { color:var(--success); }
-</style>
+
+    .ad-unit { background:var(--card); border:1px dashed var(--border); border-radius:8px; 
+               padding:16px; display:flex; align-items:center; justify-content:center; }
+    .ad-unit::before { content:'Ad'; color:var(--text2); font-size:11px; font-family:var(--mono);
+                       position:absolute; margin-top:-30px; }
+    @media (max-width:640px) { .ad-unit { min-height:100px !important; } }
+
+  </style>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -62,7 +69,16 @@
     .tab.active { color:var(--primary); border-bottom-color:var(--primary); font-weight:500; }
     @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
 
+  
+    .ad-unit { background:var(--card); border:1px dashed var(--border); border-radius:8px; 
+               padding:16px; display:flex; align-items:center; justify-content:center; }
+    .ad-unit::before { content:'Ad'; color:var(--text2); font-size:11px; font-family:var(--mono);
+                       position:absolute; margin-top:-30px; }
+    @media (max-width:640px) { .ad-unit { min-height:100px !important; } }
+
   </style>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
@@ -97,6 +113,10 @@
         <textarea id="output" class="output" placeholder="Formatted JSON will appear here..." readonly></textarea>
         <div class="stats" id="stats"></div>
       </div>
+      <div class="ad-unit" style="margin:20px 0;text-align:center;min-height:250px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXX" data-ad-slot="SIDEBAR_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
       <div class="related">
       <h3>You might also need:</h3>
       <div class="related-links">

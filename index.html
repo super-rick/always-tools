@@ -75,7 +75,16 @@
     .coming-list { display:flex; flex-wrap:wrap; gap:12px; }
     .coming-list span { background:var(--card); padding:8px 16px; border-radius:20px; font-size:13px; color:var(--text2); }
 
+  
+    .ad-unit { background:var(--card); border:1px dashed var(--border); border-radius:8px; 
+               padding:16px; display:flex; align-items:center; justify-content:center; }
+    .ad-unit::before { content:'Ad'; color:var(--text2); font-size:11px; font-family:var(--mono);
+                       position:absolute; margin-top:-30px; }
+    @media (max-width:640px) { .ad-unit { min-height:100px !important; } }
+
   </style>
+<!-- AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXXXXXX" crossorigin="anonymous"></script>
 </head>
 <body>
   <header>
@@ -221,6 +230,10 @@
         </div>
       </a>
 
+        <div class="ad-unit" style="margin-top:24px;text-align:center;min-height:90px;">
+  <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-XXXXXXXXXXXX" data-ad-slot="BOTTOM_SLOT" data-ad-format="auto" data-full-width-responsive="true"></ins>
+  <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+</div>
         <div class="coming-soon">
           <h3>Coming Soon</h3>
           <div class="coming-list">
