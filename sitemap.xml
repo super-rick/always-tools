@@ -8,4 +8,11 @@
   <url><loc>https://always.tools/qrcode.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://always.tools/md5.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
   <url><loc>https://always.tools/uuid.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://always.tools/image-compress.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://always.tools/regex-test.html</loc><changefreq>monthly</changefreq><priority>0.8</priority></url>
+  <url><loc>https://always.tools/color-convert.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://always.tools/word-count.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://always.tools/html-entity.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://always.tools/unicode.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://always.tools/morse.html</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
