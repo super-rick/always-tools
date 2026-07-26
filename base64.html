@@ -74,7 +74,8 @@
         <a href="/url-encode.html">URL</a>
         <a href="/timestamp.html">Timestamp</a>
         <a href="/qrcode.html">QR Code</a>
-        <a href="/md5.html">Hash</a>
+        <a href="/md5.html">MD5</a>
+        <a href="/sha.html">SHA</a>
         <a href="/uuid.html">UUID</a>
       </nav>
     </div>
@@ -85,16 +86,16 @@
         <h1>Base64 Encoder / Decoder</h1>
         <p class="desc">Encode text to Base64 or decode Base64 back to text. Also supports file upload.</p>
         <div class="btn-row" style="margin-bottom:0;">
-          <button class="tab active" id="tab-text" onclick="switchTab('text')">Text</button>
-          <button class="tab" id="tab-file" onclick="switchTab('file')">File</button>
+          <button type="button" class="tab active" id="tab-text" onclick="switchTab('text')">Text</button>
+          <button type="button" class="tab" id="tab-file" onclick="switchTab('file')">File</button>
         </div>
         <div id="text-panel">
           <textarea id="input" placeholder="Enter text to encode/decode..."></textarea>
           <div class="btn-row">
-            <button class="btn btn-primary" onclick="encode()">Encode</button>
-            <button class="btn btn-secondary" onclick="decode()">Decode</button>
-            <button class="btn btn-secondary" onclick="copyOutput()">Copy</button>
-            <button class="btn btn-secondary" onclick="swapIO()">⇄ Swap</button>
+            <button type="button" class="btn btn-primary" onclick="encode()">Encode</button>
+            <button type="button" class="btn btn-secondary" onclick="decode()">Decode</button>
+            <button type="button" class="btn btn-secondary" onclick="copyOutput()">Copy</button>
+            <button type="button" class="btn btn-secondary" onclick="swapIO()">⇄ Swap</button>
           </div>
           <textarea id="output" class="output" placeholder="Result..." readonly></textarea>
         </div>
@@ -111,7 +112,8 @@
         <a href="/url-encode.html">URL Encode</a>
         <a href="/timestamp.html">Timestamp</a>
         <a href="/qrcode.html">QR Code</a>
-        <a href="/md5.html">Hash Generator</a>
+        <a href="/md5.html">MD5 Hash</a>
+        <a href="/sha.html">SHA Hash</a>
         <a href="/uuid.html">UUID Generator</a>
       </div>
     </div>

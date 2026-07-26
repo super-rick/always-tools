@@ -72,7 +72,8 @@
         <a href="/url-encode.html">URL</a>
         <a href="/timestamp.html">Timestamp</a>
         <a href="/qrcode.html">QR</a>
-        <a href="/md5.html">Hash</a>
+        <a href="/md5.html">MD5</a>
+        <a href="/sha.html">SHA</a>
         <a href="/uuid.html">UUID</a>
       </nav>
     </div>
@@ -84,7 +85,7 @@
           <span style="font-size:40px;">🖼️</span>
           <p style="color:var(--text2);">Drop an image here or click to select</p>
           <input type="file" id="fileInput" accept="image/jpeg,image/png,image/webp" style="display:none;" onchange="handleFile(this.files[0])">
-          <button class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">Choose File</button>
+          <button type="button" class="btn btn-secondary" onclick="document.getElementById('fileInput').click()">Choose File</button>
         </div>
         <div id="preview" style="display:none;margin-top:16px;">
           <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
@@ -104,7 +105,7 @@
               Quality: <input type="range" id="quality" min="10" max="100" value="75" oninput="document.getElementById('qLabel').textContent=this.value+'%';compress()" style="width:120px;">
               <span id="qLabel">75%</span>
             </label>
-            <button class="btn btn-primary" onclick="downloadCompressed()">Download Compressed</button>
+            <button type="button" class="btn btn-primary" onclick="downloadCompressed()">Download Compressed</button>
           </div>
         </div>
   </div><div class="related">
@@ -115,7 +116,8 @@
         <a href="/url-encode.html">URL Encoder</a>
         <a href="/timestamp.html">Timestamp</a>
         <a href="/qrcode.html">QR Code</a>
-        <a href="/md5.html">Hash</a>
+        <a href="/md5.html">MD5</a>
+        <a href="/sha.html">SHA</a>
         <a href="/uuid.html">UUID</a>
         <a href="/image-compress.html">Image Compress</a>
         <a href="/regex-test.html">Regex Tester</a>

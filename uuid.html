@@ -76,7 +76,8 @@
         <a href="/url-encode.html">URL</a>
         <a href="/timestamp.html">Timestamp</a>
         <a href="/qrcode.html">QR Code</a>
-        <a href="/md5.html">Hash</a>
+        <a href="/md5.html">MD5</a>
+        <a href="/sha.html">SHA</a>
         <a href="/uuid.html">UUID</a>
       </nav>
     </div>
@@ -87,7 +88,7 @@
         <h1>UUID Generator</h1>
         <p class="desc">Generate random UUID v4 identifiers. Click the button or specify quantity.</p>
         <div class="btn-row" style="align-items:center;">
-          <button class="btn btn-primary" style="font-size:16px;padding:14px 32px;" onclick="genUUIDs()">Generate UUIDs</button>
+          <button type="button" class="btn btn-primary" style="font-size:16px;padding:14px 32px;" onclick="genUUIDs()">Generate UUIDs</button>
           <label style="font-size:13px;margin-left:12px;">
             Count:
             <select id="count" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);">
@@ -109,7 +110,8 @@
         <a href="/url-encode.html">URL Encode</a>
         <a href="/timestamp.html">Timestamp</a>
         <a href="/qrcode.html">QR Code</a>
-        <a href="/md5.html">Hash Generator</a>
+        <a href="/md5.html">MD5 Hash</a>
+        <a href="/sha.html">SHA Hash</a>
         <a href="/uuid.html">UUID Generator</a>
       </div>
     </div>
@@ -130,7 +132,7 @@
         const uuid = crypto.randomUUID();
         html += `<div class="uuid-row">
           <code>${uuid}</code>
-          <button class="btn btn-secondary" style="padding:4px 12px;font-size:12px;" onclick="copyUUID('${uuid}',this)">Copy</button>
+          <button type="button" class="btn btn-secondary" style="padding:4px 12px;font-size:12px;" onclick="copyUUID('${uuid}',this)">Copy</button>
         </div>`;
       }
       list.innerHTML = html;
