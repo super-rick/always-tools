@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="light">
 <head>
   <meta charset="utf-8">
   <link rel="icon" type="image/svg+xml" href="/logo.svg">
@@ -16,9 +16,19 @@
       --border: #e5e7eb; --card: #f9fafb; --danger: #ef4444;
       --success: #10b981; --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
     }
+    [data-theme="dark"] {
+      --bg: #0f172a; --text: #e2e8f0; --text2: #94a3b8;
+      --primary: #3b82f6; --primary-h: #60a5fa;
+      --border: #334155; --card: #1e293b;
+      --danger: #f87171;
+      --success: #34d399;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    [data-theme="dark"] body { background: #0f172a; }
+    [data-theme="dark"] textarea.output,
+    [data-theme="dark"] .result-box { background: #1e293b; }
     * { margin:0; padding:0; box-sizing:border-box; }
-    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-           background: #f5f5f7; color: var(--text); line-height:1.6; min-height:100vh;
+    body { background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); line-height:1.6; min-height:100vh;
            display:flex; flex-direction:column; }
     .container { max-width:960px; margin:0 auto; padding:0 20px; width:100%; }
     header { background:var(--bg); border-bottom:1px solid var(--border); padding:16px 0; }
@@ -80,8 +90,9 @@
         <a href="/lunar.html">Lunar</a>
         <a href="/uuid.html">UUID</a>
       </nav>
-    </div>
-  </header>
+        <button type="button" id="themeToggle" onclick="toggleTheme()" style="background:none;border:none;cursor:pointer;font-size:18px;padding:4px;line-height:1;" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </header>
   <main>
     <div class="container">
       <div class="tool-card">
@@ -188,6 +199,20 @@
       const v = document.getElementById('output').value;
       if(v) navigator.clipboard.writeText(v);
     }
+
+function toggleTheme() {
+  var h = document.documentElement;
+  var next = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  h.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+}
+(function initTheme() {
+  var saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  var btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+})();
 </script>
 </body>
 </html>
