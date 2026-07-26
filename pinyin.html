@@ -131,8 +131,25 @@ const pinyinMap = new Map();
 (function init() {
   for (const [py, chars] of PD) {
     for (const ch of chars) {
-      pinyinMap.set(ch, py);
+      if(!pinyinMap.has(ch)) pinyinMap.set(ch, py);
     }
+  }
+  // Frequency overrides for multi-reading chars where dict order is wrong
+  const overrides = {
+    '大':'da','拼':'pin','的':'de','了':'le','着':'zhe',
+    '得':'de','地':'de','会':'hui','行':'xing','长':'chang',
+    '重':'zhong','传':'chuan','弹':'dan','调':'tiao','觉':'jue',
+    '乐':'le','量':'liang','种':'zhong','都':'dou','还':'hai',
+    '便':'bian','系':'xi','假':'jia','数':'shu','更':'geng',
+    '好':'hao','少':'shao','教':'jiao','正':'zheng','省':'sheng',
+    '降':'jiang','相':'xiang','应':'ying','藏':'cang','校':'xiao',
+    '家':'jia','给':'gei','说':'shuo','为':'wei','和':'he','上':'shang',
+    '下':'xia','中':'zhong','去':'qu','来':'lai','出':'chu','进':'jin',
+    '过':'guo','对':'dui','没':'mei','把':'ba','被':'bei','从':'cong',
+    '比':'bi','向':'xiang','往':'wang','与':'yu','以':'yi','到':'dao'
+  };
+  for (const [ch, py] of Object.entries(overrides)) {
+    pinyinMap.set(ch, py);
   }
 })();
 
