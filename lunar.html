@@ -98,8 +98,8 @@
   <main>
     <div class="container">
       <div class="tool-card">
-        <h1>Lunar Calendar <span style="font-size:16px;font-weight:400;color:var(--text2);">公历 → 农历</span></h1>
-        <p class="desc">Convert solar (Gregorian) dates to the Chinese lunar calendar. Covers 1891–2100. All processing in your browser. <span class="today-btn" onclick="setToday()">Jump to today</span></p>
+        <h1>公历转农历 <span style="font-size:16px;font-weight:400;color:var(--text2);">公历 → 农历</span></h1>
+        <p class="desc">将公历日期转换为中国农历，支持1891年至2100年。 所有处理均在浏览器内完成。 <span class="today-btn" onclick="setToday()">回到今天</span></p>
         <div class="date-row">
           <input type="number" id="year" placeholder="Year" min="1891" max="2100" value="2026">
           <select id="month">
@@ -109,7 +109,7 @@
             <option value="10">October</option><option value="11">November</option><option value="12">December</option>
           </select>
           <input type="number" id="day" placeholder="Day" min="1" max="31" value="26">
-          <button type="button" class="btn btn-primary" onclick="convert()">Convert</button>
+          <button type="button" class="btn btn-primary" onclick="convert()">转换</button>
         </div>
         <div class="result-box" id="resultBox">
           <div class="lunar-date" id="lunarDate">—</div>
@@ -204,7 +204,7 @@ function convert() {
   var m = parseInt(document.getElementById('month').value) - 1;
   var d = parseInt(document.getElementById('day').value);
   if (isNaN(y) || isNaN(d) || y < MIN_YEAR || y > 2100) {
-    document.getElementById('lunarDate').textContent = '请输入有效日期 (1891–2100)';
+    document.getElementById('lunarDate').textContent = '请输入有效日期（1891–2100）';
     document.getElementById('lunarDetail').textContent = '';
     document.getElementById('resultGrid').innerHTML = '';
     return;
@@ -238,12 +238,12 @@ function convert() {
   document.getElementById('lunarDate').textContent = monthName + DAY_CN[ld];
   document.getElementById('lunarDetail').textContent = stemBranch + '年 · ' + zodiac + '年';
   document.getElementById('resultGrid').innerHTML =
-    '<div class="result-item"><div class="label">Solar Date</div><div class="value">' + y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0') + '</div></div>' +
-    '<div class="result-item"><div class="label">Lunar Year</div><div class="value">' + stemBranch + '年 (' + zodiac + ')</div></div>' +
-    '<div class="result-item"><div class="label">Lunar Month</div><div class="value">' + monthName + '</div></div>' +
-    '<div class="result-item"><div class="label">Lunar Day</div><div class="value">' + DAY_CN[ld] + '</div></div>' +
-    '<div class="result-item"><div class="label">Zodiac</div><div class="value">' + zodiac + '</div></div>' +
-    '<div class="result-item"><div class="label">Leap Month</div><div class="value">' + (leap ? '闰' + MONTH_CN[leap] : 'None') + '</div></div>';
+    '<div class="result-item"><div class="label">公历日期</div><div class="value">' + y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0') + '</div></div>' +
+    '<div class="result-item"><div class="label">干支年份</div><div class="value">' + stemBranch + '年 (' + zodiac + ')</div></div>' +
+    '<div class="result-item"><div class="label">农历月份</div><div class="value">' + monthName + '</div></div>' +
+    '<div class="result-item"><div class="label">农历日期</div><div class="value">' + DAY_CN[ld] + '</div></div>' +
+    '<div class="result-item"><div class="label">生肖</div><div class="value">' + zodiac + '</div></div>' +
+    '<div class="result-item"><div class="label">闰月</div><div class="value">' + (leap ? '闰' + MONTH_CN[leap] : 'None') + '</div></div>';
 }
 
 // Init with today

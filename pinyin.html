@@ -91,26 +91,26 @@
   <main>
     <div class="container">
       <div class="tool-card">
-        <h1>Pinyin Converter <span style="font-size:16px;font-weight:400;color:var(--text2);">汉字 → 拼音</span></h1>
-        <p class="desc">Convert Chinese characters to Pinyin. Supports 7,600+ characters. All processing in your browser — your text never leaves your device.</p>
-        <textarea id="input" placeholder="Enter Chinese text here... e.g. 你好世界" oninput="convert()"></textarea>
+        <h1>汉字转拼音 <span style="font-size:16px;font-weight:400;color:var(--text2);">汉字 → 拼音</span></h1>
+        <p class="desc">将汉字转换为拼音，支持7600+汉字。 Supports 7,600+ characters. All processing in your browser — your text never leaves your device.</p>
+        <textarea id="input" placeholder="输入中文文本，如：你好世界" oninput="convert()"></textarea>
         <div class="btn-row">
           <label style="font-size:13px;display:flex;align-items:center;gap:6px;">
             Separator:
             <select id="sep" onchange="convert()">
-              <option value=" ">Space</option>
-              <option value="-">Hyphen</option>
-              <option value="">None</option>
+              <option value=" ">空格</option>
+              <option value="-">连字符</option>
+              <option value="">无</option>
             </select>
           </label>
-          <button type="button" class="btn btn-secondary" onclick="copyOutput()">Copy</button>
-          <button type="button" class="btn btn-secondary" onclick="clearAll()">Clear</button>
+          <button type="button" class="btn btn-secondary" onclick="copyOutput()">复制</button>
+          <button type="button" class="btn btn-secondary" onclick="clearAll()">清空</button>
         </div>
-        <textarea id="output" class="output" readonly placeholder="Pinyin will appear here..."></textarea>
+        <textarea id="output" class="output" readonly placeholder="拼音将显示在这里..."></textarea>
         <div class="stats">
-          <span id="charCount">Characters: 0</span>
-          <span id="hanziCount">Chinese chars: 0</span>
-          <span id="missCount">Unknown: 0</span>
+          <span id="charCount">字符数: 0</span>
+          <span id="hanziCount">中文字符: 0</span>
+          <span id="missCount">未知: 0</span>
         </div>
       </div>
       <div class="related">
@@ -175,9 +175,9 @@ function convert() {
   const output = document.getElementById('output');
   if (!text.trim()) {
     output.value = '';
-    document.getElementById('charCount').textContent = 'Characters: 0';
-    document.getElementById('hanziCount').textContent = 'Chinese chars: 0';
-    document.getElementById('missCount').textContent = 'Unknown: 0';
+    document.getElementById('charCount').textContent = '字符数: 0';
+    document.getElementById('hanziCount').textContent = '中文字符: 0';
+    document.getElementById('missCount').textContent = '未知: 0';
     return;
   }
 
@@ -233,9 +233,9 @@ function copyOutput() {
 function clearAll() {
   document.getElementById('input').value = '';
   document.getElementById('output').value = '';
-  document.getElementById('charCount').textContent = 'Characters: 0';
-  document.getElementById('hanziCount').textContent = 'Chinese chars: 0';
-  document.getElementById('missCount').textContent = 'Unknown: 0';
+  document.getElementById('charCount').textContent = '字符数: 0';
+  document.getElementById('hanziCount').textContent = '中文字符: 0';
+  document.getElementById('missCount').textContent = '未知: 0';
 }
 
 function toggleTheme() {

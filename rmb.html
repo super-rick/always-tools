@@ -96,18 +96,18 @@
   <main>
     <div class="container">
       <div class="tool-card">
-        <h1>RMB Uppercase Converter <span style="font-size:16px;font-weight:400;color:var(--text2);">人民币大写转换</span></h1>
-        <p class="desc">Convert numbers to Chinese financial uppercase notation (人民币大写金额). Used on checks, invoices, and official documents. All processing in your browser.</p>
-        <input type="text" id="input" placeholder="Enter amount... e.g. 12345.67" oninput="convert()" autofocus>
+        <h1>人民币大写转换 <span style="font-size:16px;font-weight:400;color:var(--text2);">人民币大写转换</span></h1>
+        <p class="desc">将数字金额转换为中文大写，适用于支票、发票等财务场景。 所有处理均在浏览器内完成。</p>
+        <input type="text" id="input" placeholder="输入金额，如 12345.67" oninput="convert()" autofocus>
         <div class="btn-row">
-          <button type="button" class="btn btn-primary" onclick="copyResult()">Copy</button>
-          <button type="button" class="btn btn-secondary" onclick="clearAll()">Clear</button>
+          <button type="button" class="btn btn-primary" onclick="copyResult()">复制</button>
+          <button type="button" class="btn btn-secondary" onclick="clearAll()">清空</button>
         </div>
         <div class="result-box" id="resultBox">
           <div><div class="result-label">大写金额</div><span class="result-text" id="output">—</span></div>
         </div>
         <div class="examples">
-          <h4>Quick examples:</h4>
+          <h4>快速示例：</h4>
           <span class="ex-link" onclick="tryExample('12345.67')">12345.67</span>
           <span class="ex-link" onclick="tryExample('1000000')">1000000</span>
           <span class="ex-link" onclick="tryExample('0.5')">0.5</span>

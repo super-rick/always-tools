@@ -96,16 +96,36 @@
     <div class="container">
       <div class="tool-card">
         <h1>Unix Timestamp Converter</h1>
-        <p class="desc">Convert Unix timestamps to human-readable dates and vice versa. Current timestamp: <strong id="nowTs"></strong></p>
+        <p class="desc">Convert Unix timestamps to dates and vice versa. Live clock: <strong id="nowTs"></strong></p>
+        <div class="btn-row">
+          <label style="font-size:13px;display:flex;align-items:center;gap:6px;">
+            Timezone:
+            <select id="tz" onchange="tsToDate()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);">
+              <option value="UTC">UTC</option>
+              <option value="local" selected>Local (browser)</option>
+              <option value="America/New_York">US Eastern (ET)</option>
+              <option value="America/Chicago">US Central (CT)</option>
+              <option value="America/Denver">US Mountain (MT)</option>
+              <option value="America/Los_Angeles">US Pacific (PT)</option>
+              <option value="Europe/London">London (GMT/BST)</option>
+              <option value="Europe/Paris">Paris (CET)</option>
+              <option value="Asia/Shanghai">Beijing (CST)</option>
+              <option value="Asia/Tokyo">Tokyo (JST)</option>
+              <option value="Asia/Kolkata">India (IST)</option>
+              <option value="Australia/Sydney">Sydney (AEST)</option>
+            </select>
+          </label>
+        </div>
         <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;">
           <div>
             <label style="font-size:13px;font-weight:500;">Timestamp → Date</label>
-            <input type="text" id="tsInput" placeholder="e.g. 1700000000" oninput="tsToDate()" style="min-height:44px;margin-top:6px;">
+            <input type="text" id="tsInput" placeholder="Seconds, e.g. 1700000000" oninput="tsToDate()" style="min-height:44px;margin-top:6px;">
             <div id="tsResult" style="margin-top:8px;font-size:14px;padding:12px;background:var(--card);border-radius:8px;min-height:40px;"></div>
           </div>
           <div>
             <label style="font-size:13px;font-weight:500;">Date → Timestamp</label>
-            <input type="datetime-local" id="dtInput" onchange="dateToTs()" style="min-height:44px;margin-top:6px;">
+            <input type="text" id="dtInput" placeholder="YYYY-MM-DD HH:mm:ss" onchange="dateToTs()" style="min-height:44px;margin-top:6px;">
+            <div style="font-size:11px;color:var(--text2);margin-top:4px;">e.g. 2026-07-26 or 2026-07-26 14:30:00</div>
             <div id="dtResult" style="margin-top:8px;font-size:14px;padding:12px;background:var(--card);border-radius:8px;min-height:40px;"></div>
           </div>
         </div>
@@ -136,9 +156,18 @@
     </div>
   </footer>
 <script>
+    function fmtDate(d, tz) {
+      try {
+        return d.toLocaleString('en-US', {timeZone: tz, year:'numeric', month:'short', day:'numeric', hour:'2-digit', minute:'2-digit', second:'2-digit', hour12:false, weekday:'short'});
+      } catch(e) { return d.toUTCString(); }
+    }
+
     function updateNow() {
       const ts = Math.floor(Date.now()/1000);
-      document.getElementById('nowTs').textContent = ts + ' (' + new Date().toISOString() + ')';
+      const tz = document.getElementById('tz').value;
+      const d = new Date();
+      const tzStr = tz === 'local' ? Intl.DateTimeFormat().resolvedOptions().timeZone : tz;
+      document.getElementById('nowTs').textContent = ts + ' — ' + d.toISOString().replace('T',' ').substring(0,19) + ' UTC';
     }
     updateNow(); setInterval(updateNow, 1000);
 
@@ -149,22 +178,38 @@
       if(val.length===13) ts = Math.floor(ts/1000);
       const d = new Date(ts*1000);
       if(isNaN(d.getTime())) { document.getElementById('tsResult').textContent='Invalid timestamp'; return; }
-      document.getElementById('tsResult').innerHTML = `
-        <strong>UTC:</strong> ${d.toUTCString()}<br>
-        <strong>Local:</strong> ${d.toString()}<br>
-        <strong>ISO:</strong> ${d.toISOString()}
-      `;
+      const tz = document.getElementById('tz').value;
+      const tzStr = tz === 'local' ? Intl.DateTimeFormat().resolvedOptions().timeZone : tz;
+      document.getElementById('tsResult').innerHTML =
+        '<strong>UTC:</strong> ' + d.toUTCString() + '<br>' +
+        '<strong>ISO:</strong> ' + d.toISOString() + '<br>' +
+        '<strong>' + tzStr + ':</strong> ' + fmtDate(d, tz === 'local' ? undefined : tz);
     }
 
     function dateToTs() {
-      const val = document.getElementById('dtInput').value;
+      const val = document.getElementById('dtInput').value.trim();
       if(!val) { document.getElementById('dtResult').textContent=''; return; }
-      const d = new Date(val);
+      // Parse various date formats
+      let d;
+      if(/^\d{10,13}$/.test(val)) {
+        // Looks like a timestamp already
+        let ts = parseInt(val);
+        if(val.length===13) ts = Math.floor(ts/1000);
+        d = new Date(ts*1000);
+      } else {
+        d = new Date(val);
+        if(isNaN(d.getTime())) {
+          // Try parsing "YYYY-MM-DD HH:mm:ss" manually for Safari
+          const m = val.match(/^(\d{4})-(\d{1,2})-(\d{1,2})\s+(\d{1,2}):(\d{1,2}):(\d{1,2})$/);
+          if(m) d = new Date(+m[1], +m[2]-1, +m[3], +m[4], +m[5], +m[6]);
+        }
+      }
+      if(isNaN(d.getTime())) { document.getElementById('dtResult').textContent='Invalid date'; return; }
       const ts = Math.floor(d.getTime()/1000);
-      document.getElementById('dtResult').innerHTML = `
-        <strong>Seconds:</strong> ${ts}<br>
-        <strong>Milliseconds:</strong> ${d.getTime()}
-      `;
+      document.getElementById('dtResult').innerHTML =
+        '<strong>Seconds:</strong> ' + ts + '<br>' +
+        '<strong>Milliseconds:</strong> ' + d.getTime() + '<br>' +
+        '<strong>ISO:</strong> ' + d.toISOString();
     }
 
 function toggleTheme() {

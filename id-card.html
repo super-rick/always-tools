@@ -96,15 +96,15 @@
   <main>
     <div class="container">
       <div class="tool-card">
-        <h1>ID Card Validator <span style="font-size:16px;font-weight:400;color:var(--text2);">身份证号码校验</span></h1>
-        <p class="desc">Validate Chinese ID card numbers (18-digit). Extracts birth date, age, gender, and region. All processing in your browser — no data is ever sent to any server.</p>
-        <input type="text" id="input" placeholder="Enter 18-digit ID number..." oninput="validate()" maxlength="18" autofocus>
+        <h1>身份证号码校验 <span style="font-size:16px;font-weight:400;color:var(--text2);">身份证号码校验</span></h1>
+        <p class="desc">校验18位身份证号码，提取出生日期、年龄、性别、地区信息。 All processing in your browser — no data is ever sent to any server.</p>
+        <input type="text" id="input" placeholder="输入18位身份证号码..." oninput="validate()" maxlength="18" autofocus>
         <div class="btn-row">
-          <button type="button" class="btn btn-secondary" onclick="clearAll()">Clear</button>
+          <button type="button" class="btn btn-secondary" onclick="clearAll()">清空</button>
         </div>
         <div class="result-grid" id="results"></div>
         <div class="note">
-          <strong>Privacy note:</strong> This tool validates the format and check digit only. It cannot verify if an ID number actually exists or belongs to a real person. Validation uses the official GB 11643-1999 standard algorithm. No data is collected or transmitted.
+          <strong>隐私说明：</strong> 本工具仅校验格式和校验位，无法验证号码是否真实存在。 校验算法基于GB 11643-1999国家标准。所有数据均在浏览器本地处理。
         </div>
       </div>
       <div class="related">
@@ -159,13 +159,13 @@ function validate() {
   // Only proceed for 18 digits
   if (raw.length !== 18) {
     input.className = raw.length > 0 ? 'invalid' : '';
-    results.innerHTML = '<div class="result-item"><div class="label">Status</div><div class="value invalid">' + (raw.length < 18 ? 'Too short (need 18 digits)' : 'Too long (need 18 digits)') + '</div></div>';
+    results.innerHTML = '<div class="result-item"><div class="label">状态</div><div class="value invalid">' + (raw.length < 18 ? 'Too short (need 18 digits)' : 'Too long (need 18 digits)') + '</div></div>';
     return;
   }
 
   if (!/^\d{17}[\dXx]$/.test(raw)) {
     input.className = 'invalid';
-    results.innerHTML = '<div class="result-item"><div class="label">Status</div><div class="value invalid">Invalid format — must be 17 digits + check digit (0-9 or X)</div></div>';
+    results.innerHTML = '<div class="result-item"><div class="label">Status</div><div class="value invalid">格式错误 — 需要17位数字 + 校验位（0-9或X）</div></div>';
     return;
   }
 
@@ -211,11 +211,11 @@ function validate() {
 
   results.innerHTML =
     '<div class="result-item"><div class="label">Status</div><div class="value ' + (valid ? 'valid' : 'invalid') + '">' + (valid ? '✓ Valid' : '✗ Invalid') + '</div></div>' +
-    '<div class="result-item"><div class="label">Check Digit</div><div class="value ' + (checkValid ? 'valid' : 'invalid') + '">' + (checkValid ? '✓ Correct' : '✗ Should be ' + expectedCheck) + '</div></div>' +
-    '<div class="result-item"><div class="label">Birth Date</div><div class="value ' + (birthValid ? '' : 'invalid') + '">' + (birthValid ? year + '-' + String(month).padStart(2,'0') + '-' + String(day).padStart(2,'0') : 'Invalid date') + '</div></div>' +
-    '<div class="result-item"><div class="label">Age</div><div class="value">' + (birthValid ? age + ' years' : '—') + '</div></div>' +
-    '<div class="result-item"><div class="label">Gender</div><div class="value">' + gender + '</div></div>' +
-    '<div class="result-item"><div class="label">Region</div><div class="value">' + province + '</div></div>';
+    '<div class="result-item"><div class="label">校验位</div><div class="value ' + (checkValid ? 'valid' : 'invalid') + '">' + (checkValid ? '✓ Correct' : '✗ Should be ' + expectedCheck) + '</div></div>' +
+    '<div class="result-item"><div class="label">出生日期</div><div class="value ' + (birthValid ? '' : 'invalid') + '">' + (birthValid ? year + '-' + String(month).padStart(2,'0') + '-' + String(day).padStart(2,'0') : 'Invalid date') + '</div></div>' +
+    '<div class="result-item"><div class="label">年龄</div><div class="value">' + (birthValid ? age + ' years' : '—') + '</div></div>' +
+    '<div class="result-item"><div class="label">性别</div><div class="value">' + gender + '</div></div>' +
+    '<div class="result-item"><div class="label">地区</div><div class="value">' + province + '</div></div>';
 }
 
 function clearAll() {
