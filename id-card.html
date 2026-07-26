@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Chinese ID Card Validator — 身份证号码校验 Online | Always Tools</title>
+  <meta name="description" content="Validate Chinese ID card numbers. Extract birth date, age, gender, and region. All processing in your browser — no data sent anywhere.">
+  <link rel="canonical" href="https://always.tools/id-card.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ID Card Validator","applicationCategory":"UtilityApplication","operatingSystem":"Web"}</script>
+  <style>
+    :root {
+      --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
+      --primary: #2563eb; --primary-h: #1d4ed8;
+      --border: #e5e7eb; --card: #f9fafb; --danger: #ef4444;
+      --success: #10b981; --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+           background: #f5f5f7; color: var(--text); line-height:1.6; min-height:100vh;
+           display:flex; flex-direction:column; }
+    .container { max-width:960px; margin:0 auto; padding:0 20px; width:100%; }
+    header { background:var(--bg); border-bottom:1px solid var(--border); padding:16px 0; }
+    header .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:22px; font-weight:700; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .logo img { width:24px; height:24px; }
+    .nav-links { display:flex; gap:20px; }
+    .nav-links a { color:var(--text2); text-decoration:none; font-size:14px; transition:color .2s; }
+    .nav-links a:hover { color:var(--primary); }
+    main { flex:1; padding:40px 0; }
+    .tool-card { background:var(--bg); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; }
+    .tool-card h1 { font-size:24px; margin-bottom:8px; }
+    .tool-card .desc { color:var(--text2); margin-bottom:20px; font-size:14px; }
+    input[type="text"] { width:100%; padding:14px 16px;
+      border:2px solid var(--border); border-radius:8px; font-size:20px; font-family:'SF Mono',Menlo,Consolas,monospace;
+      letter-spacing:2px; transition:border-color .2s; background:var(--bg); }
+    input:focus { outline:none; border-color:var(--primary); }
+    input.valid { border-color:var(--success); }
+    input.invalid { border-color:var(--danger); }
+    .btn-row { display:flex; gap:10px; margin:16px 0; flex-wrap:wrap; align-items:center; }
+    .btn { padding:10px 20px; border:none; border-radius:8px; font-size:14px; font-weight:500;
+           cursor:pointer; transition:all .2s; }
+    .btn-primary { background:var(--primary); color:#fff; }
+    .btn-primary:hover { background:var(--primary-h); }
+    .btn-secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+    .btn-secondary:hover { background:var(--border); }
+    .result-grid { margin-top:16px; display:grid; grid-template-columns:repeat(auto-fill,minmax(200px,1fr)); gap:12px; }
+    .result-item { padding:12px 16px; background:var(--card); border-radius:8px; }
+    .result-item .label { font-size:11px; color:var(--text2); text-transform:uppercase; letter-spacing:0.5px; }
+    .result-item .value { font-size:16px; font-weight:600; margin-top:2px; }
+    .result-item .value.valid { color:var(--success); }
+    .result-item .value.invalid { color:var(--danger); }
+    .note { margin-top:16px; font-size:12px; color:var(--text2); line-height:1.5; }
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:24px 0; margin-top:40px; }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    footer, footer a { color:var(--text2); font-size:13px; text-decoration:none; }
+    .related { margin-top:24px; padding-top:16px; border-top:1px solid var(--border); }
+    .related h3 { font-size:14px; margin-bottom:8px; }
+    .related-links { display:flex; flex-wrap:wrap; gap:8px; }
+    .related-links a { color:var(--primary); font-size:13px; }
+    @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo"><img src="/logo.svg" alt="" width="24" height="24"> Always Tools</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/json-formatter.html">JSON</a>
+        <a href="/base64.html">Base64</a>
+        <a href="/url-encode.html">URL</a>
+        <a href="/timestamp.html">Timestamp</a>
+        <a href="/qrcode.html">QR Code</a>
+        <a href="/md5.html">MD5</a>
+        <a href="/sha.html">SHA</a>
+        <a href="/pinyin.html">Pinyin</a>
+        <a href="/rmb.html">RMB</a>
+        <a href="/id-card.html">ID</a>
+        <a href="/uuid.html">UUID</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="tool-card">
+        <h1>ID Card Validator <span style="font-size:16px;font-weight:400;color:var(--text2);">身份证号码校验</span></h1>
+        <p class="desc">Validate Chinese ID card numbers (18-digit). Extracts birth date, age, gender, and region. All processing in your browser — no data is ever sent to any server.</p>
+        <input type="text" id="input" placeholder="Enter 18-digit ID number..." oninput="validate()" maxlength="18" autofocus>
+        <div class="btn-row">
+          <button type="button" class="btn btn-secondary" onclick="clearAll()">Clear</button>
+        </div>
+        <div class="result-grid" id="results"></div>
+        <div class="note">
+          <strong>Privacy note:</strong> This tool validates the format and check digit only. It cannot verify if an ID number actually exists or belongs to a real person. Validation uses the official GB 11643-1999 standard algorithm. No data is collected or transmitted.
+        </div>
+      </div>
+      <div class="related">
+      <h3>You might also need:</h3>
+      <div class="related-links">
+        <a href="/json-formatter.html">JSON Formatter</a>
+        <a href="/base64.html">Base64 Encode</a>
+        <a href="/url-encode.html">URL Encode</a>
+        <a href="/pinyin.html">Pinyin</a>
+        <a href="/rmb.html">RMB Upper</a>
+        <a href="/timestamp.html">Timestamp</a>
+        <a href="/qrcode.html">QR Code</a>
+        <a href="/md5.html">MD5 Hash</a>
+        <a href="/sha.html">SHA Hash</a>
+        <a href="/uuid.html">UUID Generator</a>
+      </div>
+    </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span>&copy; 2026 Always Tools</span>
+      <span><a href="/privacy.html">Privacy</a> · <a href="/about.html">About</a></span>
+    </div>
+  </footer>
+<script>
+const WEIGHTS = [7,9,10,5,8,4,2,1,6,3,7,9,10,5,8,4,2];
+const CHECK =  ['1','0','X','9','8','7','6','5','4','3','2'];
+
+// Province codes (first 2 digits → province name)
+const PROVINCES = {
+  11:'Beijing',12:'Tianjin',13:'Hebei',14:'Shanxi',15:'Inner Mongolia',
+  21:'Liaoning',22:'Jilin',23:'Heilongjiang',
+  31:'Shanghai',32:'Jiangsu',33:'Zhejiang',34:'Anhui',35:'Fujian',36:'Jiangxi',37:'Shandong',
+  41:'Henan',42:'Hubei',43:'Hunan',44:'Guangdong',45:'Guangxi',46:'Hainan',
+  50:'Chongqing',51:'Sichuan',52:'Guizhou',53:'Yunnan',54:'Tibet',
+  61:'Shaanxi',62:'Gansu',63:'Qinghai',64:'Ningxia',65:'Xinjiang',
+  71:'Taiwan',81:'Hong Kong',82:'Macau'
+};
+
+function validate() {
+  const raw = document.getElementById('input').value.trim();
+  const input = document.getElementById('input');
+  const results = document.getElementById('results');
+
+  if (!raw) {
+    input.className = '';
+    results.innerHTML = '';
+    return;
+  }
+
+  // Only proceed for 18 digits
+  if (raw.length !== 18) {
+    input.className = raw.length > 0 ? 'invalid' : '';
+    results.innerHTML = '<div class="result-item"><div class="label">Status</div><div class="value invalid">' + (raw.length < 18 ? 'Too short (need 18 digits)' : 'Too long (need 18 digits)') + '</div></div>';
+    return;
+  }
+
+  if (!/^\d{17}[\dXx]$/.test(raw)) {
+    input.className = 'invalid';
+    results.innerHTML = '<div class="result-item"><div class="label">Status</div><div class="value invalid">Invalid format — must be 17 digits + check digit (0-9 or X)</div></div>';
+    return;
+  }
+
+  const id = raw.toUpperCase();
+  const code = id.substring(0, 6);
+  const birth = id.substring(6, 14);
+  const seq = id.substring(14, 17);
+  const checkDigit = id[17];
+
+  // Validate birth date
+  const year = parseInt(birth.substring(0, 4));
+  const month = parseInt(birth.substring(4, 6));
+  const day = parseInt(birth.substring(6, 8));
+  const birthDate = new Date(year, month - 1, day);
+  const birthValid = birthDate.getFullYear() === year &&
+                     birthDate.getMonth() === month - 1 &&
+                     birthDate.getDate() === day &&
+                     year >= 1900 && year <= new Date().getFullYear();
+
+  // Validate check digit
+  let sum = 0;
+  for (let i = 0; i < 17; i++) sum += parseInt(id[i]) * WEIGHTS[i];
+  const expectedCheck = CHECK[sum % 11];
+  const checkValid = checkDigit === expectedCheck;
+
+  // Gender
+  const gender = parseInt(seq[2]) % 2 === 0 ? 'Female' : 'Male';
+
+  // Province
+  const provCode = code.substring(0, 2);
+  const province = PROVINCES[provCode] || 'Unknown region';
+
+  // Age
+  const today = new Date();
+  let age = today.getFullYear() - year;
+  if (today.getMonth() < month - 1 || (today.getMonth() === month - 1 && today.getDate() < day)) {
+    age--;
+  }
+
+  // Overall valid
+  const valid = birthValid && checkValid;
+  input.className = valid ? 'valid' : 'invalid';
+
+  results.innerHTML =
+    '<div class="result-item"><div class="label">Status</div><div class="value ' + (valid ? 'valid' : 'invalid') + '">' + (valid ? '✓ Valid' : '✗ Invalid') + '</div></div>' +
+    '<div class="result-item"><div class="label">Check Digit</div><div class="value ' + (checkValid ? 'valid' : 'invalid') + '">' + (checkValid ? '✓ Correct' : '✗ Should be ' + expectedCheck) + '</div></div>' +
+    '<div class="result-item"><div class="label">Birth Date</div><div class="value ' + (birthValid ? '' : 'invalid') + '">' + (birthValid ? year + '-' + String(month).padStart(2,'0') + '-' + String(day).padStart(2,'0') : 'Invalid date') + '</div></div>' +
+    '<div class="result-item"><div class="label">Age</div><div class="value">' + (birthValid ? age + ' years' : '—') + '</div></div>' +
+    '<div class="result-item"><div class="label">Gender</div><div class="value">' + gender + '</div></div>' +
+    '<div class="result-item"><div class="label">Region</div><div class="value">' + province + '</div></div>';
+}
+
+function clearAll() {
+  document.getElementById('input').value = '';
+  document.getElementById('input').className = '';
+  document.getElementById('results').innerHTML = '';
+}
+</script>
+</body>
+</html>
