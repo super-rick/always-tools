@@ -1,0 +1,10 @@
+{
+  "name": "always-tools",
+  "private": true,
+  "scripts": {
+    "lint": "html-validate '*.html'"
+  },
+  "devDependencies": {
+    "html-validate": "^8.0.0"
+  }
+}

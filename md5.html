@@ -4,10 +4,10 @@
   <meta charset="utf-8">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>SHA256 Hash Generator — Online SHA-1 SHA-256 SHA-512 | Always Tools</title>
-  <meta name="description" content="Free online hash generator. Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes from any text. All processing in your browser.">
+  <title>MD5 Hash Generator — Online MD5 Hash Calculator | Always Tools</title>
+  <meta name="description" content="Free online MD5 hash generator. Generate MD5 hashes from any text. All processing in your browser — your data never leaves your device.">
   <link rel="canonical" href="https://always.tools/md5.html">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Hash Generator","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"MD5 Hash Generator","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}</script>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -71,7 +71,8 @@
         <a href="/url-encode.html">URL</a>
         <a href="/timestamp.html">Timestamp</a>
         <a href="/qrcode.html">QR Code</a>
-        <a href="/md5.html">Hash</a>
+        <a href="/md5.html">MD5</a>
+        <a href="/sha.html">SHA</a>
         <a href="/uuid.html">UUID</a>
       </nav>
     </div>
@@ -79,23 +80,14 @@
   <main>
     <div class="container">
       <div class="tool-card">
-        <h1>Hash Generator</h1>
-        <p class="desc">Generate SHA-1, SHA-256, SHA-384, and SHA-512 hashes from any text.</p>
+        <h1>MD5 Hash Generator</h1>
+        <p class="desc">Generate MD5 hashes from any text. Uses pure JavaScript — works offline, no data sent to any server.</p>
         <textarea id="input" placeholder="Enter text to hash..." oninput="autoHash()"></textarea>
         <div class="btn-row">
           <label style="font-size:13px;display:flex;align-items:center;gap:6px;">
-            Algorithm:
-            <select id="algo" onchange="autoHash()" style="padding:8px 12px;border-radius:6px;border:1px solid var(--border);">
-              <option value="SHA-256">SHA-256</option>
-              <option value="SHA-1">SHA-1</option>
-              <option value="SHA-384">SHA-384</option>
-              <option value="SHA-512">SHA-512</option>
-            </select>
-          </label>
-          <label style="font-size:13px;display:flex;align-items:center;gap:6px;">
             <input type="checkbox" id="uppercase" onchange="autoHash()"> Uppercase
           </label>
-          <button class="btn btn-secondary" onclick="copyHash()">Copy</button>
+          <button type="button" class="btn btn-secondary" onclick="copyHash()">Copy</button>
         </div>
         <textarea id="output" class="output" readonly placeholder="Hash will appear here..."></textarea>
       </div>
@@ -107,7 +99,8 @@
         <a href="/url-encode.html">URL Encode</a>
         <a href="/timestamp.html">Timestamp</a>
         <a href="/qrcode.html">QR Code</a>
-        <a href="/md5.html">Hash Generator</a>
+        <a href="/md5.html">MD5 Hash</a>
+        <a href="/sha.html">SHA Hash</a>
         <a href="/uuid.html">UUID Generator</a>
       </div>
     </div>
@@ -120,21 +113,64 @@
     </div>
   </footer>
 <script>
-    async function genHash(text, algo) {
-      const encoder = new TextEncoder();
-      const data = encoder.encode(text);
-      const hashBuffer = await crypto.subtle.digest(algo, data);
-      return Array.from(new Uint8Array(hashBuffer))
-        .map(b => b.toString(16).padStart(2, '0')).join('');
+    // MD5 hash (RFC 1321) with proper UTF-8 support via TextEncoder
+    function md5(str) {
+      var input = new TextEncoder().encode(str);
+      var n = input.length;
+
+      // Padding: message + 0x80 + zeros + 64-bit length
+      var blocks = ((n + 8) >>> 6) + 1;
+      var totalLen = blocks * 64;
+      var msg = new Uint8Array(totalLen);
+      msg.set(input);
+      msg[n] = 0x80;
+      var bits = n * 8;
+      var view = new DataView(msg.buffer);
+      view.setUint32(totalLen - 8, bits >>> 0, true);
+
+      var a = 0x67452301, b = 0xefcdab89, c = 0x98badcfe, d = 0x10325476;
+
+      for (var i = 0; i < totalLen; i += 64) {
+        var M = new Uint32Array(msg.buffer.slice(i, i + 64));
+        var A = a, B = b, C = c, D = d;
+
+        for (var j = 0; j < 64; j++) {
+          var F, g;
+          if (j < 16) { F = (B & C) | (~B & D); g = j; }
+          else if (j < 32) { F = (D & B) | (~D & C); g = (5 * j + 1) % 16; }
+          else if (j < 48) { F = B ^ C ^ D; g = (3 * j + 5) % 16; }
+          else { F = C ^ (B | ~D); g = (7 * j) % 16; }
+
+          var K = Math.floor(Math.abs(Math.sin(j + 1)) * 0x100000000);
+          var shift = [7,12,17,22,5,9,14,20,4,11,16,23,6,10,15,21][j%4+(j>15?4:0)+(j>31?4:0)+(j>47?4:0)];
+
+          F = (F + A + K + M[g]) >>> 0;
+          A = D; D = C; C = B;
+          B = (B + ((F << shift) | (F >>> (32 - shift)))) >>> 0;
+        }
+
+        a = (a + A) >>> 0;
+        b = (b + B) >>> 0;
+        c = (c + C) >>> 0;
+        d = (d + D) >>> 0;
+      }
+
+      function toHex(x) {
+        var h = '';
+        for (var k = 0; k < 4; k++) {
+          h += ((x >>> (k * 8)) & 0xFF).toString(16).padStart(2, '0');
+        }
+        return h;
+      }
+      return toHex(a) + toHex(b) + toHex(c) + toHex(d);
     }
 
     async function autoHash() {
       const text = document.getElementById('input').value;
-      const algo = document.getElementById('algo').value;
       const upper = document.getElementById('uppercase').checked;
       const output = document.getElementById('output');
       if(!text.trim()) { output.value=''; return; }
-      let hash = await genHash(text, algo);
+      let hash = md5(text);
       if(upper) hash = hash.toUpperCase();
       output.value = hash;
     }
