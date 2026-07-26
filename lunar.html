@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="zh-Hans">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lunar Calendar Converter — Solar to Chinese Lunar Calendar 公历转农历 | Always Tools</title>
+  <meta name="description" content="Convert solar dates to Chinese lunar calendar (农历). Shows stem-branch year, zodiac animal, and lunar date. Covers 1891-2100. Works offline.">
+  <link rel="canonical" href="https://always.tools/lunar.html">
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Lunar Calendar Converter","applicationCategory":"UtilityApplication","operatingSystem":"Web"}</script>
+  <style>
+    :root {
+      --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
+      --primary: #2563eb; --primary-h: #1d4ed8;
+      --border: #e5e7eb; --card: #f9fafb; --danger: #ef4444;
+      --success: #10b981; --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+           background: #f5f5f7; color: var(--text); line-height:1.6; min-height:100vh;
+           display:flex; flex-direction:column; }
+    .container { max-width:960px; margin:0 auto; padding:0 20px; width:100%; }
+    header { background:var(--bg); border-bottom:1px solid var(--border); padding:16px 0; }
+    header .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:22px; font-weight:700; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .logo img { width:24px; height:24px; }
+    .nav-links { display:flex; gap:20px; }
+    .nav-links a { color:var(--text2); text-decoration:none; font-size:14px; transition:color .2s; }
+    .nav-links a:hover { color:var(--primary); }
+    main { flex:1; padding:40px 0; }
+    .tool-card { background:var(--bg); border-radius:var(--radius); box-shadow:var(--shadow); padding:24px; }
+    .tool-card h1 { font-size:24px; margin-bottom:8px; }
+    .tool-card .desc { color:var(--text2); margin-bottom:20px; font-size:14px; }
+    .date-row { display:flex; gap:12px; align-items:flex-end; flex-wrap:wrap; }
+    .date-row input, .date-row select { padding:12px 14px; border:2px solid var(--border);
+      border-radius:8px; font-size:16px; transition:border-color .2s; background:var(--bg); }
+    .date-row input:focus, .date-row select:focus { outline:none; border-color:var(--primary); }
+    .date-row input { width:80px; text-align:center; }
+    .btn-row { display:flex; gap:10px; margin:16px 0; flex-wrap:wrap; align-items:center; }
+    .btn { padding:10px 20px; border:none; border-radius:8px; font-size:14px; font-weight:500;
+           cursor:pointer; transition:all .2s; }
+    .btn-primary { background:var(--primary); color:#fff; }
+    .btn-primary:hover { background:var(--primary-h); }
+    .btn-secondary { background:var(--card); color:var(--text); border:1px solid var(--border); }
+    .btn-secondary:hover { background:var(--border); }
+    .result-box { margin-top:16px; padding:20px; background:linear-gradient(135deg,#fef3c7,#fef9e7);
+                  border-radius:8px; border:2px solid #f59e0b; text-align:center; }
+    .lunar-date { font-size:28px; font-family:'PingFang SC','Hiragino Sans GB','Microsoft YaHei',sans-serif;
+                  color:#92400e; font-weight:700; }
+    .lunar-detail { font-size:14px; color:#a16207; margin-top:6px; }
+    .result-grid { margin-top:16px; display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+    .result-item { padding:10px 14px; background:var(--card); border-radius:8px; }
+    .result-item .label { font-size:11px; color:var(--text2); }
+    .result-item .value { font-size:16px; font-weight:600; margin-top:2px; }
+    .today-btn { font-size:13px; color:var(--primary); cursor:pointer; text-decoration:underline; }
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:24px 0; margin-top:40px; }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    footer, footer a { color:var(--text2); font-size:13px; text-decoration:none; }
+    .related { margin-top:24px; padding-top:16px; border-top:1px solid var(--border); }
+    .related h3 { font-size:14px; margin-bottom:8px; }
+    .related-links { display:flex; flex-wrap:wrap; gap:8px; }
+    .related-links a { color:var(--primary); font-size:13px; }
+    @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo"><img src="/logo.svg" alt="" width="24" height="24"> Always Tools</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/json-formatter.html">JSON</a>
+        <a href="/base64.html">Base64</a>
+        <a href="/url-encode.html">URL</a>
+        <a href="/timestamp.html">Timestamp</a>
+        <a href="/qrcode.html">QR Code</a>
+        <a href="/md5.html">MD5</a>
+        <a href="/sha.html">SHA</a>
+        <a href="/pinyin.html">Pinyin</a>
+        <a href="/rmb.html">RMB</a>
+        <a href="/id-card.html">ID</a>
+        <a href="/lunar.html">Lunar</a>
+        <a href="/uuid.html">UUID</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container">
+      <div class="tool-card">
+        <h1>Lunar Calendar <span style="font-size:16px;font-weight:400;color:var(--text2);">公历 → 农历</span></h1>
+        <p class="desc">Convert solar (Gregorian) dates to the Chinese lunar calendar. Covers 1891–2100. All processing in your browser. <span class="today-btn" onclick="setToday()">Jump to today</span></p>
+        <div class="date-row">
+          <input type="number" id="year" placeholder="Year" min="1891" max="2100" value="2026">
+          <select id="month">
+            <option value="1">January</option><option value="2">February</option><option value="3">March</option>
+            <option value="4">April</option><option value="5">May</option><option value="6">June</option>
+            <option value="7" selected>July</option><option value="8">August</option><option value="9">September</option>
+            <option value="10">October</option><option value="11">November</option><option value="12">December</option>
+          </select>
+          <input type="number" id="day" placeholder="Day" min="1" max="31" value="26">
+          <button type="button" class="btn btn-primary" onclick="convert()">Convert</button>
+        </div>
+        <div class="result-box" id="resultBox">
+          <div class="lunar-date" id="lunarDate">—</div>
+          <div class="lunar-detail" id="lunarDetail"></div>
+        </div>
+        <div class="result-grid" id="resultGrid"></div>
+      </div>
+      <div class="related">
+      <h3>You might also need:</h3>
+      <div class="related-links">
+        <a href="/pinyin.html">Pinyin</a>
+        <a href="/rmb.html">RMB Upper</a>
+        <a href="/id-card.html">ID Card</a>
+        <a href="/timestamp.html">Timestamp</a>
+        <a href="/json-formatter.html">JSON Formatter</a>
+        <a href="/base64.html">Base64 Encode</a>
+        <a href="/url-encode.html">URL Encode</a>
+        <a href="/qrcode.html">QR Code</a>
+        <a href="/md5.html">MD5 Hash</a>
+        <a href="/sha.html">SHA Hash</a>
+        <a href="/uuid.html">UUID Generator</a>
+      </div>
+    </div>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span>&copy; 2026 Always Tools</span>
+      <span><a href="/privacy.html">Privacy</a> · <a href="/about.html">About</a></span>
+    </div>
+  </footer>
+<script>
+// Lunar calendar data 1891-2100: [leapMonth, newYearSolarMonth, newYearSolarDay, packedMonthData]
+const LUNAR=[[2,1,21,22184],[0,2,9,21936],[6,1,30,9656],[0,2,17,9584],[0,2,6,21168],[5,1,26,43344],[0,2,13,59728],[0,2,2,27296],[3,1,22,44368],[0,2,10,43856],[8,1,30,19304],[0,2,19,19168],[0,2,8,42352],[5,1,29,21096],[0,2,16,53856],[0,2,4,55632],[4,1,25,27304],[0,2,13,22176],[0,2,2,39632],[2,1,22,19176],[0,2,10,19168],[6,1,30,42200],[0,2,18,42192],[0,2,6,53840],[5,1,26,54568],[0,2,14,46400],[0,2,3,54944],[2,1,23,38608],[0,2,11,38320],[7,2,1,18872],[0,2,20,18800],[0,2,8,42160],[5,1,28,45656],[0,2,16,27216],[0,2,5,27968],[4,1,24,44456],[0,2,13,11104],[0,2,2,38256],[2,1,23,18808],[0,2,10,18800],[6,1,30,25776],[0,2,17,54432],[0,2,6,59984],[5,1,26,27976],[0,2,14,23248],[0,2,4,11104],[3,1,24,37744],[0,2,11,37600],[7,1,31,51560],[0,2,19,51536],[0,2,8,54432],[6,1,27,55888],[0,2,15,46416],[0,2,5,22176],[4,1,25,43736],[0,2,13,9680],[0,2,2,37584],[2,1,22,51544],[0,2,10,43344],[7,1,29,46248],[0,2,17,27808],[0,2,6,46416],[5,1,27,21928],[0,2,14,19872],[0,2,3,42416],[3,1,24,21176],[0,2,12,21168],[8,1,31,43344],[0,2,18,59728],[0,2,8,27296],[6,1,28,44368],[0,2,15,43856],[0,2,5,19296],[4,1,25,42352],[0,2,13,42352],[0,2,2,21088],[3,1,21,59696],[0,2,9,55632],[7,1,30,23208],[0,2,17,22176],[0,2,6,38608],[5,1,27,19176],[0,2,15,19152],[0,2,3,42192],[4,1,23,53864],[0,2,11,53840],[8,1,31,54568],[0,2,18,46400],[0,2,7,46752],[6,1,28,38608],[0,2,16,38320],[0,2,5,18864],[4,1,25,42168],[0,2,13,42160],[10,2,2,45656],[0,2,20,27216],[0,2,9,27968],[6,1,29,44448],[0,2,17,43872],[0,2,6,38256],[5,1,27,18808],[0,2,15,18800],[0,2,4,25776],[3,1,23,27216],[0,2,10,59984],[8,1,31,27432],[0,2,19,23232],[0,2,7,43872],[5,1,28,37736],[0,2,16,37600],[0,2,5,51552],[4,1,24,54440],[0,2,12,54432],[0,2,1,55888],[2,1,22,23208],[0,2,9,22176],[7,1,29,43736],[0,2,18,9680],[0,2,7,37584],[5,1,26,51544],[0,2,14,43344],[0,2,3,46240],[4,1,23,46416],[0,2,10,44368],[9,1,31,21928],[0,2,19,19360],[0,2,8,42416],[6,1,28,21176],[0,2,16,21168],[0,2,5,43312],[4,1,25,29864],[0,2,12,27296],[0,2,1,44368],[2,1,22,19880],[0,2,10,19296],[6,1,29,42352],[0,2,17,42208],[0,2,6,53856],[5,1,26,59696],[0,2,13,54576],[0,2,3,23200],[3,1,23,27472],[0,2,11,38608],[11,1,31,19176],[0,2,19,19152],[0,2,8,42192],[6,1,28,53848],[0,2,15,53840],[0,2,4,54560],[5,1,24,55968],[0,2,12,46496],[0,2,1,22224],[2,1,22,19160],[0,2,10,18864],[7,1,30,42168],[0,2,17,42160],[0,2,6,43600],[5,1,26,46376],[0,2,14,27936],[0,2,2,44448],[3,1,23,21936],[0,2,11,37744],[8,2,1,18808],[0,2,19,18800],[0,2,8,25776],[6,1,28,27216],[0,2,15,59984],[0,2,4,27424],[4,1,24,43872],[0,2,12,43744],[0,2,2,37600],[3,1,21,51568],[0,2,9,51552],[7,1,29,54440],[0,2,17,54432],[0,2,5,55888],[5,1,26,23208],[0,2,14,22176],[0,2,3,42704],[4,1,23,21224],[0,2,11,21200],[8,1,31,43352],[0,2,19,43344],[0,2,7,46240],[6,1,27,46416],[0,2,15,44368],[0,2,5,21920],[4,1,24,42448],[0,2,12,42416],[0,2,2,21168],[3,1,22,43320],[0,2,9,26928],[7,1,29,29336],[0,2,17,27296],[0,2,6,44368],[5,1,26,19880],[0,2,14,19296],[0,2,3,42352],[4,1,24,21104],[0,2,10,53856],[8,1,30,59696],[0,2,18,54560],[0,2,7,55968],[6,1,27,27472],[0,2,15,22224],[0,2,5,19168],[4,1,25,42216],[0,2,12,42192],[0,2,1,53584],[2,1,21,55592],[0,2,9,54560]];
+
+const MIN_YEAR=1891;
+const STEMS=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
+const BRANCHES=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
+const ZODIAC=['Rat','鼠','Cow','牛','Tiger','虎','Rabbit','兔','Dragon','龙','Snake','蛇','Horse','马','Goat','羊','Monkey','猴','Rooster','鸡','Dog','狗','Pig','猪'];
+const MONTH_CN=['正月','二月','三月','四月','五月','六月','七月','八月','九月','十月','十一月','十二月'];
+const DAY_CN=['','初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
+
+function getLunarYearDays(year) {
+  var d = LUNAR[year - MIN_YEAR];
+  var leap = d[0];
+  var bits = d[3].toString(2).split('');
+  while (bits.length < 16) bits.unshift('0');
+  var len = leap ? 13 : 12;
+  var total = 0;
+  var months = [];
+  for (var i = 0; i < len; i++) {
+    var days = bits[i] === '1' ? 30 : 29;
+    total += days;
+    months.push(days);
+  }
+  return { total: total, months: months };
+}
+
+function getLunarByBetween(year, between) {
+  var yd = getLunarYearDays(year);
+  var end = between > 0 ? between : yd.total - Math.abs(between);
+  var temp = 0;
+  var month = 0;
+  for (var i = 0; i < yd.months.length; i++) {
+    temp += yd.months[i];
+    if (temp > end) { month = i; temp -= yd.months[i]; break; }
+  }
+  return [year, month, end - temp + 1];
+}
+
+function solarToLunar(y, m, d) {
+  if (y < MIN_YEAR || y > 2100) return null;
+  var data = LUNAR[y - MIN_YEAR];
+  var newYearM = data[1] - 1; // 0-indexed
+  var newYearD = data[2];
+  var between = Math.round((new Date(y, m, d) - new Date(y, newYearM, newYearD)) / 86400000);
+  if (between === 0) return [y, 0, 1];
+  var lunarYear = between > 0 ? y : y - 1;
+  return getLunarByBetween(lunarYear, between);
+}
+
+function setToday() {
+  var now = new Date();
+  document.getElementById('year').value = now.getFullYear();
+  document.getElementById('month').value = now.getMonth() + 1;
+  document.getElementById('day').value = now.getDate();
+  convert();
+}
+
+function convert() {
+  var y = parseInt(document.getElementById('year').value);
+  var m = parseInt(document.getElementById('month').value) - 1;
+  var d = parseInt(document.getElementById('day').value);
+  if (isNaN(y) || isNaN(d) || y < MIN_YEAR || y > 2100) {
+    document.getElementById('lunarDate').textContent = '请输入有效日期 (1891–2100)';
+    document.getElementById('lunarDetail').textContent = '';
+    document.getElementById('resultGrid').innerHTML = '';
+    return;
+  }
+  var lunar = solarToLunar(y, m, d);
+  if (!lunar) {
+    document.getElementById('lunarDate').textContent = '转换失败';
+    document.getElementById('lunarDetail').textContent = '';
+    return;
+  }
+  var ly = lunar[0], lm = lunar[1], ld = lunar[2];
+  var data = LUNAR[ly - MIN_YEAR];
+  var leap = data[0];
+
+  // Month name
+  var monthName;
+  if (leap && lm > leap) {
+    monthName = (lm === leap + 1 ? '闰' : '') + MONTH_CN[leap > 0 && lm > leap ? lm - 1 : lm];
+  } else {
+    monthName = MONTH_CN[lm];
+  }
+  if (leap && lm === leap + 1) monthName = '闰' + MONTH_CN[leap];
+
+  // Stem-branch year
+  var stemIdx = (ly - 4) % 10;
+  var branchIdx = (ly - 4) % 12;
+  var stemBranch = STEMS[stemIdx] + BRANCHES[branchIdx];
+  var zodiacIdx = (ly - 4) % 12;
+  var zodiac = ZODIAC[zodiacIdx * 2 + 1];
+
+  document.getElementById('lunarDate').textContent = monthName + DAY_CN[ld];
+  document.getElementById('lunarDetail').textContent = stemBranch + '年 · ' + zodiac + '年';
+  document.getElementById('resultGrid').innerHTML =
+    '<div class="result-item"><div class="label">Solar Date</div><div class="value">' + y + '-' + String(m+1).padStart(2,'0') + '-' + String(d).padStart(2,'0') + '</div></div>' +
+    '<div class="result-item"><div class="label">Lunar Year</div><div class="value">' + stemBranch + '年 (' + zodiac + ')</div></div>' +
+    '<div class="result-item"><div class="label">Lunar Month</div><div class="value">' + monthName + '</div></div>' +
+    '<div class="result-item"><div class="label">Lunar Day</div><div class="value">' + DAY_CN[ld] + '</div></div>' +
+    '<div class="result-item"><div class="label">Zodiac</div><div class="value">' + zodiac + '</div></div>' +
+    '<div class="result-item"><div class="label">Leap Month</div><div class="value">' + (leap ? '闰' + MONTH_CN[leap] : 'None') + '</div></div>';
+}
+
+// Init with today
+setToday();
+</script>
+</body>
+</html>
