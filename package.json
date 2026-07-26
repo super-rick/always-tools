@@ -2,6 +2,7 @@
   "name": "always-tools",
   "private": true,
   "scripts": {
+    "build": "echo 'No build step — static site'",
     "lint": "html-validate '*.html'"
   },
   "devDependencies": {
