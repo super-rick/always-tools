@@ -63,15 +63,15 @@ Every tool targets 5–10 long-tail search keywords. 14 tools × 10 keywords = 1
 ```bash
 git clone git@github.com:super-rick/always-tools.git
 cd always-tools
-python3 -m http.server 8888    # or any static server
+python3 -m http.server 8888 --directory public    # or any static server
 open http://localhost:8888
 ```
 
 Add a new tool:
-1. Copy an existing `.html` file
+1. Copy an existing file in `public/`
 2. Edit the `<title>`, `<h1>`, tool logic
-3. Add to `index.html` tool grid
-4. Add to `sitemap.xml`
+3. Add to `public/index.html` tool grid
+4. Add to `public/sitemap.xml`
 
 ---
 
