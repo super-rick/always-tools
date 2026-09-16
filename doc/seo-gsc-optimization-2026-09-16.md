@@ -51,6 +51,8 @@ doc/seo-gsc-optimization-2026-09-16.md
 ```
 
 > 结构调整：2026-09-16 晚将全部网站文件迁入 `public/`，`wrangler.jsonc` 的 `assets.directory` 改为 `./public`。这样 `doc/`、`.git/`、`node_modules/` 不再进入发布包，内部文档不会暴露到线上。
+>
+> 补充修正：Workers 静态资产内置 HTML handling 会把 `.html` 重定向到无后缀 URL（307），与原 `_redirects`（无后缀 → `.html` 301）方向相反，造成重定向死循环导致子页面打不开。已删除 `public/_redirects`，canonical、sitemap、内链统一改为无后缀 URL。
 
 ---
 
