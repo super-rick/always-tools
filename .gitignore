@@ -5,3 +5,6 @@
 .vscode/
 promotion/
 node_modules/
+.wrangler/
+.hermes-tmp.*/
+doc/.hermes-tmp.*/

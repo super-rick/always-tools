@@ -41,13 +41,16 @@
 ## 已修改文件
 
 ```text
-md5.html
-url-encode.html
-uuid.html
-_redirects
+public/md5.html
+public/url-encode.html
+public/uuid.html
+public/_redirects
+wrangler.jsonc
 package.json
 doc/seo-gsc-optimization-2026-09-16.md
 ```
+
+> 结构调整：2026-09-16 晚将全部网站文件迁入 `public/`，`wrangler.jsonc` 的 `assets.directory` 改为 `./public`。这样 `doc/`、`.git/`、`node_modules/` 不再进入发布包，内部文档不会暴露到线上。
 
 ---
 
