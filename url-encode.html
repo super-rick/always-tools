@@ -5,10 +5,10 @@
   <link rel="icon" type="image/svg+xml" href="/logo.svg">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>URL Encoder — Online URL Decode & Encode | Always Tools</title>
-  <meta name="description" content="Free online URL encoder and decoder. Encode special characters for URLs or decode percent-encoded strings.">
+  <title>URL Encoder and Decoder Online - Encode URLs Safely | Always Tools</title>
+  <meta name="description" content="Encode and decode URLs online. Convert special characters to percent-encoding and decode URL-encoded text instantly in your browser.">
   <link rel="canonical" href="https://always.tools/url-encode.html">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"URL Encoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"URL Encoder and Decoder Online","url":"https://always.tools/url-encode.html","applicationCategory":"DeveloperApplication","operatingSystem":"Any","description":"Encode and decode URLs online. Convert special characters to percent-encoding and decode URL-encoded text instantly in your browser.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is URL encoding?","acceptedAnswer":{"@type":"Answer","text":"URL encoding converts reserved or unsafe characters into percent-encoded sequences so text can be safely included in a URL."}},{"@type":"Question","name":"What does %20 mean in a URL?","acceptedAnswer":{"@type":"Answer","text":"%20 is the percent-encoded form of a space character."}},{"@type":"Question","name":"Is URL encoding the same as Base64?","acceptedAnswer":{"@type":"Answer","text":"No. URL encoding escapes characters for URLs, while Base64 represents binary data as text."}},{"@type":"Question","name":"Should spaces be encoded as %20 or +?","acceptedAnswer":{"@type":"Answer","text":"For URL path and query values, encodeURIComponent uses %20. In form-encoded data, spaces are often represented as +."}}]}]}</script>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -73,6 +73,13 @@
     .tab.active { color:var(--primary); border-bottom-color:var(--primary); font-weight:500; }
     @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
 
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .example-box { margin:12px 0; padding:14px; background:var(--card); border:1px solid var(--border); border-radius:8px; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; overflow:auto; }
+
   </style>
 </head>
 <body>
@@ -95,8 +102,8 @@
   <main>
     <div class="container">
       <div class="tool-card">
-        <h1>URL Encoder / Decoder</h1>
-        <p class="desc">Encode special characters for URLs or decode percent-encoded strings.</p>
+        <h1>URL Encoder and Decoder Online</h1>
+        <p class="desc">Encode special characters for URLs or decode percent-encoded strings instantly in your browser.</p>
         <textarea id="input" placeholder="Enter URL or text to encode/decode..."></textarea>
         <div class="btn-row">
           <button type="button" class="btn btn-primary" onclick="urlEncode()">Encode</button>
@@ -106,6 +113,26 @@
         </div>
         <textarea id="output" class="output" placeholder="Result..." readonly></textarea>
       </div>
+      <section class="seo-content" aria-labelledby="url-guide">
+        <h2 id="url-guide">Free online URL encoder and decoder</h2>
+        <p>This URL encoder and decoder converts text to percent-encoded URL components and decodes URL-encoded strings back to readable text. It is useful for query parameters, callback URLs, API testing, and debugging copied links.</p>
+        <div class="example-box">Input: hello world?x=1&amp;y=2<br>Encoded: hello%20world%3Fx%3D1%26y%3D2</div>
+        <h3>When to use URL encoding</h3>
+        <ul>
+          <li>Encode spaces, ampersands, question marks, and non-ASCII characters in query parameters.</li>
+          <li>Decode percent-encoded logs, redirect URLs, and API payloads.</li>
+          <li>Check how JavaScript <code>encodeURIComponent</code> represents a value.</li>
+        </ul>
+        <h3>encodeURI vs encodeURIComponent</h3>
+        <p><code>encodeURIComponent</code> is best for individual query parameter values because it escapes reserved characters such as <code>&amp;</code>, <code>=</code>, and <code>?</code>. <code>encodeURI</code> is used for a full URL and leaves more URL syntax characters unchanged.</p>
+        <h3>FAQ</h3>
+        <h3>What is URL encoding?</h3>
+        <p>URL encoding converts reserved or unsafe characters into percent-encoded sequences so they can be safely included in a URL.</p>
+        <h3>What does %20 mean?</h3>
+        <p><code>%20</code> is the percent-encoded representation of a space character.</p>
+        <h3>Is URL encoding the same as Base64?</h3>
+        <p>No. URL encoding escapes characters for URLs; Base64 represents binary data as text.</p>
+      </section>
       <div class="related">
       <h3>You might also need:</h3>
       <div class="related-links">
