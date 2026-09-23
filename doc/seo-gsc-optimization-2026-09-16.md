@@ -498,11 +498,50 @@ uuid.html         WebApplication, FAQPage
 
 ---
 
+## 7. 第二梯队页面优化（2026-09-24）
+
+延续第一轮核心页面优化，对 GSC 曝光次高的五个页面做同样的内容加厚：
+
+| 页面 | 原 GSC 曝光 | 原平均排名 | 新 H1 |
+|---|---:|---:|---|
+| `unicode.html` | 259 | 71.23 | Unicode Converter Online |
+| `morse.html` | 214 | 78.17 | Morse Code Converter Online |
+| `html-entity.html` | 57 | 68.56 | HTML Entity Encoder and Decoder Online |
+| `sha.html` | 42 | 67.12 | SHA Hash Generator Online |
+| `qrcode.html` | 45 | 87.89 | QR Code Generator Online |
+
+### 每页统一改动
+
+与 md5 / url-encode / uuid 相同套路：
+
+1. Title / Meta / H1 优化，加入 `Online` 与长尾关键词；
+2. 新增 `.seo-content` 区块：说明段落 + 示例框 + 使用场景 + FAQ；
+3. JSON-LD 从 `SoftwareApplication` 升级为 `WebApplication`（含 `offers.price = 0`）+ `FAQPage`（与页面可见 FAQ 一致）。
+
+### 各页示例
+
+```text
+unicode      Input: Hello  ->  Unicode: \u0048\u0065\u006c\u006c\u006f
+morse        Input: SOS    ->  Morse: ... --- ...
+html-entity  Input: <div>Hello</div>  ->  &lt;div&gt;Hello&lt;/div&gt;
+sha          Input: hello  ->  SHA-256: 2cf24dba5fb0a30e26e83b2ac5b9e29e1b161e5c1fa7425e73043362938b9824
+qrcode       Input: https://always.tools  ->  QR code PNG image
+```
+
+> 示例值均与实际工具输出一致（SHA-256 与 Unicode 转义已核对）。
+
+### 隐私声明差异
+
+- `unicode` / `morse` / `html-entity` / `sha` 为纯浏览器本地 JS，隐私声明（“数据不离开设备”）属实。
+- `qrcode` 实际调用 `api.qrserver.com` 生成二维码，内容会外发，因此未写入“本地处理”声明。
+
+---
+
 ## 后续建议
 
-### 第一优先级：继续加厚第二梯队页面
+### 第一优先级：加厚第二梯队页面（✅ 已完成 2026-09-24）
 
-建议下一轮处理：
+以下五个页面已完成加厚（见第 7 节）：
 
 | 页面 | 原 GSC 曝光 | 原平均排名 |
 |---|---:|---:|
@@ -525,19 +564,16 @@ uuid.html         WebApplication, FAQPage
 
 短期可以接受；长期建议引入简单生成脚本或模板系统，否则 20+ 工具页维护成本会越来越高。
 
-### 第三优先级：决定 URL 战略
+### 第三优先级：URL 战略（已解决）与遗留跳转
 
-当前保守方案是 `.html` canonical。
+URL 战略已确定：全站采用无后缀 URL（canonical、sitemap、内链统一为 `/md5` 等），`.html` 由 Workers 内置 307 重定向到无后缀。此事项已在 `3921428` 完成。
 
-未来可以考虑迁移到：
+遗留待办（无法在仓库内完成，需 Cloudflare 仪表盘配置）：
 
-```text
-/md5
-/url-encode
-/uuid
-```
+- `http://` → `https://`：SSL/TLS → Edge Certificates → Always Use HTTPS 打开；
+- `www.` → 非 `www.`：Rules → Redirect Rules 建立 301 跳转。
 
-但这需要全站统一迁移，并重新提交 sitemap。
+这两项未配置时，`http://` 与 `www.` 变体仍会 200 返回，造成 GSC 中重复 URL 分流。
 
 ### 第四优先级：上线后观察 GSC
 
@@ -555,7 +591,7 @@ uuid.html         WebApplication, FAQPage
 ## 当前分支
 
 ```text
-seo-gsc-optimizations
+main
 ```
 
-本次修改尚未提交 / 推送。
+第一轮（md5 / url-encode / uuid）与第二轮（第二梯队五页）均已提交并推送到 main。
