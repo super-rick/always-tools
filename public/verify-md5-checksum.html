@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>How to Verify an MD5 Checksum on Windows, macOS, and Linux | Always Tools</title>
+  <meta name="description" content="Generate and verify MD5 checksums on Windows (CertUtil), macOS, and Linux (md5sum). Step-by-step commands, plus when to use SHA-256 instead.">
+  <link rel="canonical" href="https://always.tools/verify-md5-checksum">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"How to Verify an MD5 Checksum on Windows, macOS, and Linux","description":"Generate and verify MD5 checksums on Windows (CertUtil), macOS, and Linux (md5sum). Step-by-step commands, plus when to use SHA-256 instead.","url":"https://always.tools/verify-md5-checksum","author":{"@type":"Organization","name":"Always Tools","url":"https://always.tools/"},"publisher":{"@type":"Organization","name":"Always Tools","url":"https://always.tools/"},"datePublished":"2026-10-09","dateModified":"2026-10-09","inLanguage":"en","isAccessibleForFree":true},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Is MD5 secure for checksums?","acceptedAnswer":{"@type":"Answer","text":"MD5 is fine for detecting accidental corruption such as a broken download, but it is not secure against deliberate tampering because collision attacks exist. Use SHA-256 when security matters."}},{"@type":"Question","name":"How do I verify a downloaded file?","acceptedAnswer":{"@type":"Answer","text":"Compute the checksum of the downloaded file and compare it with the value published by the vendor. If the two match, the file arrived intact. If they differ, re-download the file."}},{"@type":"Question","name":"What is the difference between MD5 and SHA-256?","acceptedAnswer":{"@type":"Answer","text":"MD5 produces a 128-bit digest and is considered cryptographically broken for security purposes. SHA-256 produces a 256-bit digest, has no practical collision attacks, and is the recommended choice for integrity verification."}}]}]}</script>
+  <style>
+    :root {
+      --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
+      --primary: #2563eb; --primary-h: #1d4ed8;
+      --border: #e5e7eb; --card: #f9fafb; --danger: #ef4444;
+      --success: #10b981; --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a; --text: #e2e8f0; --text2: #94a3b8;
+      --primary: #3b82f6; --primary-h: #60a5fa;
+      --border: #334155; --card: #1e293b;
+      --danger: #f87171;
+      --success: #34d399;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    [data-theme="dark"] body { background: #0f172a; }
+    [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] p { color: var(--text); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); line-height:1.6; min-height:100vh;
+           display:flex; flex-direction:column; }
+    .container { max-width:960px; margin:0 auto; padding:0 20px; width:100%; }
+    header { background:var(--bg); border-bottom:1px solid var(--border); padding:16px 0; }
+    header .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:22px; font-weight:700; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .logo img { width:24px; height:24px; }
+    .nav-links { display:flex; gap:20px; }
+    .nav-links a { color:var(--text2); text-decoration:none; font-size:14px; transition:color .2s; }
+    .nav-links a:hover { color:var(--primary); }
+    main { flex:1; padding:40px 0; }
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:24px 0; margin-top:40px; }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    footer, footer a { color:var(--text2); font-size:13px; text-decoration:none; }
+    .article { max-width:720px; margin:0 auto; }
+    .article h1 { font-size:26px; line-height:1.3; margin-bottom:6px; }
+    .article .meta { color:var(--text2); font-size:13px; margin-bottom:24px; }
+    .article h2 { font-size:20px; margin:30px 0 10px; }
+    .article h3 { font-size:16px; margin:22px 0 8px; }
+    .article p { margin:10px 0; font-size:15px; }
+    .article ul, .article ol { margin:8px 0 8px 22px; font-size:15px; }
+    .article li { margin:4px 0; }
+    .article code { background:var(--card); padding:1px 5px; border-radius:4px; font-size:13px; font-family:'SF Mono',Menlo,Consolas,monospace; }
+    .code-block { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:14px 16px; overflow:auto; margin:14px 0; }
+    .code-block pre { margin:0; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; line-height:1.55; white-space:pre; }
+    .article table { border-collapse:collapse; width:100%; margin:14px 0; font-size:14px; }
+    .article th, .article td { border:1px solid var(--border); padding:8px 12px; text-align:left; }
+    .article th { background:var(--card); }
+    .cta { margin:22px 0; padding:16px 20px; border:1px solid var(--primary); border-radius:var(--radius); background:var(--card); font-size:14px; }
+    .cta a { color:var(--primary); font-weight:600; }
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .related { margin-top:24px; padding-top:16px; border-top:1px solid var(--border); }
+    .related h3 { font-size:14px; margin-bottom:8px; }
+    .related-links { display:flex; flex-wrap:wrap; gap:8px; }
+    .related-links a { color:var(--primary); font-size:13px; }
+    @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo"><img src="/logo.svg" alt="" width="24" height="24"> Always Tools</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/json-formatter">JSON</a>
+        <a href="/base64">Base64</a>
+        <a href="/timestamp">Timestamp</a>
+        <a href="/qrcode">QR Code</a>
+        <a href="/md5">MD5</a>
+        <a href="/pinyin">Pinyin</a>
+        <a href="/uuid">UUID</a>
+      </nav>
+        <button type="button" id="themeToggle" onclick="toggleTheme()" style="background:none;border:none;cursor:pointer;font-size:18px;padding:4px;line-height:1;" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </header>
+  <main>
+    <div class="container">
+      <article class="article">
+        <h1>How to Verify an MD5 Checksum on Windows, macOS, and Linux</h1>
+        <p class="meta">Last updated: October 9, 2026</p>
+        <p>A checksum is a short fingerprint computed from a file's contents. Publishers list MD5 (or SHA-256) checksums next to downloads so you can confirm the file arrived intact — not corrupted in transit and not tampered with. An MD5 checksum is 32 hexadecimal characters, and the same file always produces the same value.</p>
+        <h2>Windows: CertUtil</h2>
+        <p>Windows ships <code>certutil</code>, which computes several hash algorithms. Open Command Prompt (or PowerShell) and run:</p>
+        <div class="code-block"><pre>certutil -hashfile "C:\Users\you\Downloads\ubuntu.iso" MD5</pre></div>
+        <p>The output prints the digest followed by "CertUtil: -hashfile command completed successfully." For SHA-256, replace <code>MD5</code> with <code>SHA256</code>.</p>
+        <h2>macOS</h2>
+        <p>macOS has the <code>md5</code> command built in. Open Terminal and run:</p>
+        <div class="code-block"><pre>md5 /path/to/file
+# or SHA-256:
+shasum -a 256 /path/to/file</pre></div>
+        <h2>Linux</h2>
+        <p>Use <code>md5sum</code> on any Linux distribution. <code>sha256sum</code> works the same way for SHA-256.</p>
+        <div class="code-block"><pre>md5sum /path/to/file
+# or SHA-256:
+sha256sum /path/to/file</pre></div>
+        <h2>How to verify a downloaded file</h2>
+        <ol>
+          <li>Download the file and note the checksum the publisher lists next to it.</li>
+          <li>Compute the checksum of your copy with one of the commands above.</li>
+          <li>Compare the two values. A match means the file is intact; a mismatch means the download was corrupted or altered — delete it and re-download.</li>
+        </ol>
+        <p>Comparison is case-insensitive: <code>5D41402ABC4B2A76B9719D911017C592</code> equals <code>5d41402abc4b2a76b9719d911017c592</code>.</p>
+        <h2>MD5 or SHA-256?</h2>
+        <table>
+          <thead>
+            <tr><th scope="col"></th><th scope="col">MD5</th><th scope="col">SHA-256</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Digest length</th><td>128 bits (32 hex chars)</td><td>256 bits (64 hex chars)</td></tr>
+            <tr><th scope="row">Security</th><td>Broken: collision attacks exist</td><td>No practical attacks known</td></tr>
+            <tr><th scope="row">Use for</th><td>Detecting accidental corruption, legacy systems</td><td>Security-sensitive integrity checks, signatures</td></tr>
+          </tbody>
+        </table>
+        <p>MD5 remains fine for catching an interrupted download, but any time you care about tampering, use SHA-256. Many publishers now list only SHA-256.</p>
+        <div class="cta">Verifying text instead of files? The free <a href="/md5">MD5 Hash Generator</a> hashes any text in your browser, with SHA-1/SHA-256/SHA-512 available on the <a href="/sha">SHA Hash Generator</a>.</div>
+        <section class="seo-content" aria-labelledby="md5-faq">
+          <h2 id="md5-faq">FAQ</h2>
+          <h3>Is MD5 secure for checksums?</h3>
+          <p>MD5 is fine for detecting accidental corruption such as a broken download, but it is not secure against deliberate tampering because collision attacks exist. Use SHA-256 when security matters.</p>
+          <h3>How do I verify a downloaded file?</h3>
+          <p>Compute the checksum of the downloaded file and compare it with the value published by the vendor. If the two match, the file arrived intact. If they differ, re-download the file.</p>
+          <h3>What is the difference between MD5 and SHA-256?</h3>
+          <p>MD5 produces a 128-bit digest and is considered cryptographically broken for security purposes. SHA-256 produces a 256-bit digest and is the recommended choice for integrity verification.</p>
+        </section>
+        <div class="related">
+          <h3>More guides and tools:</h3>
+          <div class="related-links">
+            <a href="/how-to-generate-uuid">UUID Guide</a>
+            <a href="/uuid-v4-vs-v7">UUID v4 vs v7</a>
+            <a href="/url-encoding-guide">URL Encoding Guide</a>
+            <a href="/md5">MD5 Hash</a>
+            <a href="/sha">SHA Hash</a>
+            <a href="/uuid">UUID Generator</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span>&copy; 2026 Always Tools</span>
+      <span><a href="/privacy">Privacy</a> · <a href="/about">About</a></span>
+    </div>
+  </footer>
+<script>
+function toggleTheme() {
+  var h = document.documentElement;
+  var next = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  h.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+}
+(function initTheme() {
+  var saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  var btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+})();
+</script>
+</body>
+</html>
