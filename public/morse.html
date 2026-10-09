@@ -8,7 +8,7 @@
   <title>Morse Code Converter — Text to Morse Online | Always Tools</title>
   <meta name="description" content="Free online Morse code converter. Convert text to Morse code and decode Morse back to text. Play Morse code audio.">
   <link rel="canonical" href="https://always.tools/morse">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Morse Code Converter","applicationCategory":"UtilityApplication","operatingSystem":"Web"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Morse Code Converter Online","url":"https://always.tools/morse","applicationCategory":"UtilityApplication","operatingSystem":"Any","description":"Free online Morse code converter. Convert text to Morse code and decode Morse back to text. Play Morse code audio.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Morse code?","acceptedAnswer":{"@type":"Answer","text":"Morse code is a communication system that encodes letters, digits, and punctuation as sequences of short and long signals called dots (dits) and dashes (dahs). It was developed in the 1830s for telegraphy and is still used in amateur radio and aviation."}},{"@type":"Question","name":"How do I learn Morse code?","acceptedAnswer":{"@type":"Answer","text":"Start with common letters such as E, T, A, and N, then add letters gradually. Short daily practice sessions with audio playback beat long cramming sessions, because Morse is learned by ear as a rhythm rather than by memorizing a table."}},{"@type":"Question","name":"Does the converter support audio?","acceptedAnswer":{"@type":"Answer","text":"Yes. Convert text to Morse code, then press Play Sound to hear the sequence as 600 Hz audio beeps."}},{"@type":"Question","name":"What does the slash (/) mean in Morse code?","acceptedAnswer":{"@type":"Answer","text":"A slash separates words. A single space separates the letters within a word. For example, HELLO WORLD encodes as .... . .-.. .-.. --- / .-- --- .-. .-.. -.."}}]}]}</script>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -73,6 +73,12 @@
                    display:flex; justify-content:space-between; align-items:center; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; }
     @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
 
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .example-box { margin:12px 0; padding:14px; background:var(--card); border:1px solid var(--border); border-radius:8px; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; overflow:auto; }
 
   </style>
 </head>
@@ -107,7 +113,30 @@
         <div style="margin-top:12px;">
           <button type="button" class="btn btn-secondary" style="font-size:12px;padding:6px 12px;" onclick="playMorse()">🔊 Play Sound</button>
         </div>
-  </div><div class="related">
+  </div>
+      <section class="seo-content" aria-labelledby="morse-guide">
+        <h2 id="morse-guide">Free online Morse code converter</h2>
+        <p>Convert text to Morse code and decode Morse back to text. Supports the letters A–Z, digits 0–9, and common punctuation, with audio playback so you can hear the code instead of just reading it.</p>
+        <div class="example-box">Input: SOS<br>Morse: ... --- ...<br><br>Input: HELLO WORLD<br>Morse: .... . .-.. .-.. --- / .-- --- .-. .-.. -..</div>
+        <h3>Privacy and local processing</h3>
+        <p>Conversion happens locally in your browser. Your text is not uploaded to any server.</p>
+        <h3>Common Morse code use cases</h3>
+        <ul>
+          <li>Practice for amateur (ham) radio licensing and CW operation.</li>
+          <li>Solve escape rooms, treasure hunts, and puzzle games.</li>
+          <li>Encode messages for classroom activities and hobby projects.</li>
+        </ul>
+        <h3>FAQ</h3>
+        <h3>What is Morse code?</h3>
+        <p>Morse code encodes letters, digits, and punctuation as sequences of short and long signals called dots and dashes.</p>
+        <h3>How do I learn Morse code?</h3>
+        <p>Start with common letters such as E, T, A, and N. Short daily sessions with audio playback work best, because Morse is learned by ear as a rhythm.</p>
+        <h3>Does the converter support audio?</h3>
+        <p>Yes. Convert text to Morse code, then press Play Sound to hear the sequence as 600 Hz audio beeps.</p>
+        <h3>What does the slash (/) mean in Morse code?</h3>
+        <p>A slash separates words. A single space separates the letters within a word.</p>
+      </section>
+      <div class="related">
       <h3>You might also need:</h3>
       <div class="related-links">
         <a href="/json-formatter">JSON Formatter</a>

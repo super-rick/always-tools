@@ -8,7 +8,7 @@
   <title>Unicode Converter — Text to Unicode Online | Always Tools</title>
   <meta name="description" content="Free online Unicode converter. Convert text to Unicode escape sequences (\\uXXXX) and decode them back.">
   <link rel="canonical" href="https://always.tools/unicode">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Unicode Converter","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"Unicode Converter Online","url":"https://always.tools/unicode","applicationCategory":"DeveloperApplication","operatingSystem":"Any","description":"Free online Unicode converter. Convert text to Unicode escape sequences (\\uXXXX) and decode them back.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is Unicode?","acceptedAnswer":{"@type":"Answer","text":"Unicode is the international standard that assigns a unique code point to every character in every writing system, covering letters, digits, punctuation, symbols, and emoji."}},{"@type":"Question","name":"What is a \\uXXXX escape sequence?","acceptedAnswer":{"@type":"Answer","text":"A \\uXXXX escape represents one character by its 16-bit hexadecimal code unit. For example, \\u0048 is the letter H. JavaScript, JSON, and Java use this format in string literals."}},{"@type":"Question","name":"How do I convert Chinese text to Unicode escapes?","acceptedAnswer":{"@type":"Answer","text":"Paste the text and press Text to Unicode. For example, 你好 becomes \\u4f60\\u597d. Press Unicode to Text to decode escapes back into characters."}}]}]}</script>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -73,6 +73,12 @@
                    display:flex; justify-content:space-between; align-items:center; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; }
     @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
 
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .example-box { margin:12px 0; padding:14px; background:var(--card); border:1px solid var(--border); border-radius:8px; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; overflow:auto; }
 
   </style>
 </head>
@@ -104,7 +110,28 @@
           <button type="button" class="btn btn-secondary" onclick="swapIO()">⇄ Swap</button>
         </div>
         <textarea id="output" class="output" readonly placeholder="Result..."></textarea>
-  </div><div class="related">
+  </div>
+      <section class="seo-content" aria-labelledby="unicode-guide">
+        <h2 id="unicode-guide">Free online Unicode converter</h2>
+        <p>Convert plain text to Unicode escape sequences (\uXXXX) and decode them back. Handy for writing JavaScript and JSON string literals, debugging garbled text, and learning how characters are represented internally.</p>
+        <div class="example-box">Input: 你好<br>Text → Unicode: \u4f60\u597d<br>Unicode → Text: 你好</div>
+        <h3>Privacy and local processing</h3>
+        <p>All conversion happens locally in your browser with JavaScript. Nothing you type is sent to a server.</p>
+        <h3>Common Unicode converter use cases</h3>
+        <ul>
+          <li>Build \uXXXX escapes for JavaScript, JSON, and Java string literals.</li>
+          <li>Debug mojibake and confirm how a character is encoded.</li>
+          <li>Convert international text for systems that only accept ASCII-safe input.</li>
+        </ul>
+        <h3>FAQ</h3>
+        <h3>What is Unicode?</h3>
+        <p>Unicode is the international standard that assigns a unique code point to every character in every writing system.</p>
+        <h3>What is a \uXXXX escape sequence?</h3>
+        <p>A \uXXXX escape represents one character by its 16-bit hexadecimal code unit. For example, \u0048 is the letter H.</p>
+        <h3>How do I convert Chinese text to Unicode escapes?</h3>
+        <p>Paste the text and press Text → Unicode. For example, 你好 becomes \u4f60\u597d.</p>
+      </section>
+      <div class="related">
       <h3>You might also need:</h3>
       <div class="related-links">
         <a href="/json-formatter">JSON Formatter</a>

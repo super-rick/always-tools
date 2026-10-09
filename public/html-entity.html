@@ -8,7 +8,7 @@
   <title>HTML Entity Encoder — Encode Decode Online | Always Tools</title>
   <meta name="description" content="Free online HTML entity encoder and decoder. Encode special characters to HTML entities or decode them back.">
   <link rel="canonical" href="https://always.tools/html-entity">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"HTML Entity Encoder","applicationCategory":"DeveloperApplication","operatingSystem":"Web"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"HTML Entity Encoder Online","url":"https://always.tools/html-entity","applicationCategory":"DeveloperApplication","operatingSystem":"Any","description":"Free online HTML entity encoder and decoder. Encode special characters to HTML entities or decode them back.","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is an HTML entity?","acceptedAnswer":{"@type":"Answer","text":"An HTML entity is a named or numeric code that represents a character that would otherwise be interpreted as markup, such as &lt; for the less-than sign or &amp; for the ampersand. Entities keep special characters from breaking the structure of a page."}},{"@type":"Question","name":"When should I encode HTML entities?","acceptedAnswer":{"@type":"Answer","text":"Encode user-generated content before inserting it into HTML to prevent markup breakage and cross-site scripting (XSS). At minimum, escape the less-than sign, greater-than sign, ampersand, and quotes."}},{"@type":"Question","name":"What is the difference between named and numeric entities?","acceptedAnswer":{"@type":"Answer","text":"Named entities use mnemonic codes such as &lt;, while numeric entities use character references such as &#60;. Both render the same character; named forms are easier to read."}},{"@type":"Question","name":"How does entity decoding work?","acceptedAnswer":{"@type":"Answer","text":"Decoding parses sequences such as &lt; and &amp; back into the characters they represent. It is useful for reading escaped HTML source, RSS feeds, and API responses."}}]}]}</script>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -73,6 +73,12 @@
                    display:flex; justify-content:space-between; align-items:center; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; }
     @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
 
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .example-box { margin:12px 0; padding:14px; background:var(--card); border:1px solid var(--border); border-radius:8px; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; overflow:auto; }
 
   </style>
 </head>
@@ -104,7 +110,32 @@
           <button type="button" class="btn btn-secondary" onclick="swapIO()">⇄ Swap</button>
         </div>
         <textarea id="output" class="output" readonly placeholder="Result..."></textarea>
-  </div><div class="related">
+  </div>
+      <section class="seo-content" aria-labelledby="entity-guide">
+        <h2 id="entity-guide">Free online HTML entity encoder and decoder</h2>
+        <p>Encode special characters to HTML entities or decode them back. Useful when writing code samples, protecting user content from breaking your markup, and reading escaped HTML from APIs and RSS feeds.</p>
+        <div class="example-box">Input: &lt;div&gt;Hello&lt;/div&gt;<br>Encode: &amp;lt;div&amp;gt;Hello&amp;lt;/div&amp;gt;<br>Decode: &lt;div&gt;Hello&lt;/div&gt;</div>
+        <h3>Privacy and local processing</h3>
+        <p>Encoding and decoding run entirely in your browser. Nothing you paste is sent to a server.</p>
+        <h3>Common HTML entity use cases</h3>
+        <ul>
+          <li>Display code snippets such as &lt;div&gt; inside tutorials and blog posts.</li>
+          <li>Sanitize user input before it is rendered into page markup.</li>
+          <li>Read escaped HTML from CMS exports, RSS feeds, and API responses.</li>
+        </ul>
+        <h3>Security note</h3>
+        <p>Entity encoding is one layer of defense. For robust XSS protection, pair it with context-aware output escaping and a proper sanitizer — encoding alone is not a complete fix for every context.</p>
+        <h3>FAQ</h3>
+        <h3>What is an HTML entity?</h3>
+        <p>An HTML entity is a named or numeric code that represents a character that would otherwise be interpreted as markup, such as &amp;lt; for the less-than sign or &amp;amp; for the ampersand.</p>
+        <h3>When should I encode HTML entities?</h3>
+        <p>Encode user-generated content before inserting it into HTML to prevent markup breakage and cross-site scripting (XSS).</p>
+        <h3>What is the difference between named and numeric entities?</h3>
+        <p>Named entities use mnemonic codes such as &amp;lt;, while numeric entities use character references such as &amp;#60;. Both render the same character.</p>
+        <h3>How does entity decoding work?</h3>
+        <p>Decoding parses sequences such as &amp;lt; and &amp;amp; back into the characters they represent.</p>
+      </section>
+      <div class="related">
       <h3>You might also need:</h3>
       <div class="related-links">
         <a href="/json-formatter">JSON Formatter</a>
