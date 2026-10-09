@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="utf-8">
+  <link rel="icon" type="image/svg+xml" href="/logo.svg">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>UUID v4 vs UUID v7: Which Should You Use? (2026 Guide) | Always Tools</title>
+  <meta name="description" content="UUID v4 vs v7 compared: randomness vs time-ordering, database index performance, predictability trade-offs, and code examples for every major language.">
+  <link rel="canonical" href="https://always.tools/uuid-v4-vs-v7">
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"TechArticle","headline":"UUID v4 vs UUID v7: Which Should You Use?","description":"UUID v4 vs v7 compared: randomness vs time-ordering, database index performance, predictability trade-offs, and code examples for every major language.","url":"https://always.tools/uuid-v4-vs-v7","author":{"@type":"Organization","name":"Always Tools","url":"https://always.tools/"},"publisher":{"@type":"Organization","name":"Always Tools","url":"https://always.tools/"},"datePublished":"2026-10-09","dateModified":"2026-10-09","inLanguage":"en","isAccessibleForFree":true},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Are UUID v7 values predictable?","acceptedAnswer":{"@type":"Answer","text":"Partially. A UUID v7 embeds the millisecond timestamp of creation in its first 48 bits, so anyone reading it can see when it was created. If IDs must be unguessable, use UUID v4 instead."}},{"@type":"Question","name":"Which databases support UUID v7?","acceptedAnswer":{"@type":"Answer","text":"PostgreSQL 18 added a built-in uuidv7() function. On other databases you generate UUID v7 values in your application code with libraries such as uuid (JavaScript), uuid-creator (Java), or uuid.uuid7() in Python 3.14."}},{"@type":"Question","name":"Is UUID v7 sortable?","acceptedAnswer":{"@type":"Answer","text":"Mostly. UUID v7 starts with a millisecond timestamp, so values sort by creation time, which keeps B-tree indexes compact. Two values created in the same millisecond still contain random bits, so their relative order is not strictly chronological."}}]}]}</script>
+  <style>
+    :root {
+      --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
+      --primary: #2563eb; --primary-h: #1d4ed8;
+      --border: #e5e7eb; --card: #f9fafb; --danger: #ef4444;
+      --success: #10b981; --radius: 12px; --shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    [data-theme="dark"] {
+      --bg: #0f172a; --text: #e2e8f0; --text2: #94a3b8;
+      --primary: #3b82f6; --primary-h: #60a5fa;
+      --border: #334155; --card: #1e293b;
+      --danger: #f87171;
+      --success: #34d399;
+      --shadow: 0 1px 3px rgba(0,0,0,0.4);
+    }
+    [data-theme="dark"] body { background: #0f172a; }
+    [data-theme="dark"] h2, [data-theme="dark"] h3, [data-theme="dark"] p { color: var(--text); }
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--text); line-height:1.6; min-height:100vh;
+           display:flex; flex-direction:column; }
+    .container { max-width:960px; margin:0 auto; padding:0 20px; width:100%; }
+    header { background:var(--bg); border-bottom:1px solid var(--border); padding:16px 0; }
+    header .container { display:flex; align-items:center; justify-content:space-between; }
+    .logo { font-size:22px; font-weight:700; color:var(--text); text-decoration:none; display:flex; align-items:center; gap:8px; }
+    .logo img { width:24px; height:24px; }
+    .nav-links { display:flex; gap:20px; }
+    .nav-links a { color:var(--text2); text-decoration:none; font-size:14px; transition:color .2s; }
+    .nav-links a:hover { color:var(--primary); }
+    main { flex:1; padding:40px 0; }
+    footer { background:var(--bg); border-top:1px solid var(--border); padding:24px 0; margin-top:40px; }
+    footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
+    footer, footer a { color:var(--text2); font-size:13px; text-decoration:none; }
+    .article { max-width:720px; margin:0 auto; }
+    .article h1 { font-size:26px; line-height:1.3; margin-bottom:6px; }
+    .article .meta { color:var(--text2); font-size:13px; margin-bottom:24px; }
+    .article h2 { font-size:20px; margin:30px 0 10px; }
+    .article h3 { font-size:16px; margin:22px 0 8px; }
+    .article p { margin:10px 0; font-size:15px; }
+    .article ul, .article ol { margin:8px 0 8px 22px; font-size:15px; }
+    .article li { margin:4px 0; }
+    .article code { background:var(--card); padding:1px 5px; border-radius:4px; font-size:13px; font-family:'SF Mono',Menlo,Consolas,monospace; }
+    .code-block { background:var(--card); border:1px solid var(--border); border-radius:8px; padding:14px 16px; overflow:auto; margin:14px 0; }
+    .code-block pre { margin:0; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; line-height:1.55; white-space:pre; }
+    .article table { border-collapse:collapse; width:100%; margin:14px 0; font-size:14px; }
+    .article th, .article td { border:1px solid var(--border); padding:8px 12px; text-align:left; }
+    .article th { background:var(--card); }
+    .cta { margin:22px 0; padding:16px 20px; border:1px solid var(--primary); border-radius:var(--radius); background:var(--card); font-size:14px; }
+    .cta a { color:var(--primary); font-weight:600; }
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .related { margin-top:24px; padding-top:16px; border-top:1px solid var(--border); }
+    .related h3 { font-size:14px; margin-bottom:8px; }
+    .related-links { display:flex; flex-wrap:wrap; gap:8px; }
+    .related-links a { color:var(--primary); font-size:13px; }
+    @media (max-width:640px) { .container { padding:0 16px; } .nav-links { display:none; } }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <a href="/" class="logo"><img src="/logo.svg" alt="" width="24" height="24"> Always Tools</a>
+      <nav class="nav-links">
+        <a href="/">Home</a>
+        <a href="/json-formatter">JSON</a>
+        <a href="/base64">Base64</a>
+        <a href="/timestamp">Timestamp</a>
+        <a href="/qrcode">QR Code</a>
+        <a href="/md5">MD5</a>
+        <a href="/pinyin">Pinyin</a>
+        <a href="/uuid">UUID</a>
+      </nav>
+        <button type="button" id="themeToggle" onclick="toggleTheme()" style="background:none;border:none;cursor:pointer;font-size:18px;padding:4px;line-height:1;" aria-label="Toggle dark mode">🌙</button>
+      </div>
+    </header>
+  <main>
+    <div class="container">
+      <article class="article">
+        <h1>UUID v4 vs UUID v7: Which Should You Use?</h1>
+        <p class="meta">Last updated: October 9, 2026</p>
+        <p><a href="https://www.rfc-editor.org/rfc/rfc9562">RFC 9562</a> (May 2024) standardized three new UUID versions — v6, v7, and v8 — alongside the classic v4. The version developers actually argue about is v4 vs v7, because it is a genuine trade-off between randomness and ordering. Here is the full picture.</p>
+        <h2>UUID v4: pure randomness</h2>
+        <p>UUID v4 sets 122 bits to random values and 6 bits to the version and variant markers. Every value is uniformly random: nothing about the ID reveals when or where it was created, and nobody can guess the next value.</p>
+        <p>That randomness has a cost in databases. B-tree indexes keep data physically ordered, and inserting uniformly random keys lands on random pages, causing page splits and index fragmentation. On write-heavy tables, v4 keys measurably hurt insert performance.</p>
+        <h2>UUID v7: time-ordered</h2>
+        <p>UUID v7 starts with a 48-bit Unix timestamp in milliseconds, followed by version bits and random bits. Values created close together sort close together, so inserts append to the same pages — the reason databases like sequential keys. You also get a useful property for free: the creation time is embedded in the ID.</p>
+        <p>The cost is privacy and security: a v7 ID leaks its creation timestamp and the random component is only 74 bits, so v7 values are easier to guess than v4. Do not use v7 where IDs must be unguessable, such as session tokens, password reset links, or anonymous identifiers.</p>
+        <h2>Side-by-side</h2>
+        <table>
+          <thead>
+            <tr><th scope="col"></th><th scope="col">UUID v4</th><th scope="col">UUID v7</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Structure</th><td>122 random bits</td><td>48-bit ms timestamp + 74 random bits</td></tr>
+            <tr><th scope="row">Ordering</th><td>None</td><td>Sorts by creation time</td></tr>
+            <tr><th scope="row">Database index behavior</th><td>Random inserts, page splits</td><td>Append-friendly inserts</td></tr>
+            <tr><th scope="row">Reveals creation time?</th><td>No</td><td>Yes (millisecond precision)</td></tr>
+            <tr><th scope="row">Guessable?</th><td>Effectively no</td><td>Harder to guess, but weaker than v4</td></tr>
+            <tr><th scope="row">Best for</th><td>Tokens, anonymous IDs, anything unguessable</td><td>Primary keys, event logs, IDs you want sortable</td></tr>
+          </tbody>
+        </table>
+        <h2>Code examples</h2>
+        <div class="code-block"><pre>// JavaScript (uuid npm package v11+)
+import { v4 as uuidv4, v7 as uuidv7 } from 'uuid';
+uuidv4();  // "3f2c9e5a-7b4d-4e2a-9c1f-8d3b6a2e4f51"
+uuidv7();  // "0192f8a4-5c70-7000-8000-123456789abc"
+
+// Java (uuid-creator)
+import com.github.f4b6a3.uuid.UuidCreator;
+UuidCreator.getRandomBased();   // v4
+UuidCreator.getTimeOrderedEpoch(); // v7
+
+// Python 3.14+
+import uuid
+uuid.uuid4()  # v4
+uuid.uuid7()  # v7</pre></div>
+        <p>PostgreSQL 18 added a built-in <code>uuidv7()</code> function; on other databases generate v7 in application code and store it in a UUID column as usual.</p>
+        <h2>Recommendation</h2>
+        <ul>
+          <li>Database primary keys, event logs, or any ID you want sortable by creation time → <strong>v7</strong>.</li>
+          <li>Session tokens, API keys, password reset links, or any ID that must not be enumerable → <strong>v4</strong>.</li>
+          <li>Not sure, or just need unique IDs quickly → v4 is the safe default; v7 pays off only at write-heavy database scale.</li>
+        </ul>
+        <div class="cta">Need UUIDs right now? The free <a href="/uuid">UUID Generator</a> creates up to 50 v4 values per click in your browser, and the <a href="/how-to-generate-uuid">UUID generation guide</a> has full code for JavaScript, Java, and Python.</div>
+        <section class="seo-content" aria-labelledby="uuidvs-faq">
+          <h2 id="uuidvs-faq">FAQ</h2>
+          <h3>Are UUID v7 values predictable?</h3>
+          <p>Partially. A UUID v7 embeds the millisecond timestamp of creation in its first 48 bits, so anyone reading it can see when it was created. If IDs must be unguessable, use UUID v4 instead.</p>
+          <h3>Which databases support UUID v7?</h3>
+          <p>PostgreSQL 18 added a built-in uuidv7() function. On other databases you generate UUID v7 values in your application code with libraries such as uuid (JavaScript), uuid-creator (Java), or uuid.uuid7() in Python 3.14.</p>
+          <h3>Is UUID v7 sortable?</h3>
+          <p>Mostly. UUID v7 starts with a millisecond timestamp, so values sort by creation time, which keeps B-tree indexes compact. Two values created in the same millisecond still contain random bits, so their relative order is not strictly chronological.</p>
+        </section>
+        <div class="related">
+          <h3>More guides and tools:</h3>
+          <div class="related-links">
+            <a href="/how-to-generate-uuid">UUID Guide</a>
+            <a href="/verify-md5-checksum">Verify MD5 Checksums</a>
+            <a href="/url-encoding-guide">URL Encoding Guide</a>
+            <a href="/uuid">UUID Generator</a>
+            <a href="/timestamp">Timestamp</a>
+            <a href="/sha">SHA Hash</a>
+          </div>
+        </div>
+      </article>
+    </div>
+  </main>
+  <footer>
+    <div class="container">
+      <span>&copy; 2026 Always Tools</span>
+      <span><a href="/privacy">Privacy</a> · <a href="/about">About</a></span>
+    </div>
+  </footer>
+<script>
+function toggleTheme() {
+  var h = document.documentElement;
+  var next = h.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+  h.setAttribute('data-theme', next);
+  localStorage.setItem('theme', next);
+  document.getElementById('themeToggle').textContent = next === 'dark' ? '☀️' : '🌙';
+}
+(function initTheme() {
+  var saved = localStorage.getItem('theme') || 'light';
+  document.documentElement.setAttribute('data-theme', saved);
+  var btn = document.getElementById('themeToggle');
+  if (btn) btn.textContent = saved === 'dark' ? '☀️' : '🌙';
+})();
+</script>
+</body>
+</html>

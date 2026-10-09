@@ -20,4 +20,8 @@
   <url><loc>https://always.tools/html-entity</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://always.tools/unicode</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
   <url><loc>https://always.tools/morse</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://always.tools/how-to-generate-uuid</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://always.tools/uuid-v4-vs-v7</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://always.tools/verify-md5-checksum</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
+  <url><loc>https://always.tools/url-encoding-guide</loc><changefreq>monthly</changefreq><priority>0.7</priority></url>
 </urlset>
