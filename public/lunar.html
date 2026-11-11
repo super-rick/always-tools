@@ -5,10 +5,10 @@
   <link rel="icon" type="image/svg+xml" href="/logo.svg">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Lunar Calendar Converter — Solar to Chinese Lunar Calendar 公历转农历 | Always Tools</title>
-  <meta name="description" content="Convert solar dates to Chinese lunar calendar (农历). Shows stem-branch year, zodiac animal, and lunar date. Covers 1891-2100. Works offline.">
+  <title>公历转农历 - 在线农历查询·干支生肖换算 | Always Tools</title>
+  <meta name="description" content="在线公历转农历工具，输入阳历日期查对应农历日期、干支纪年、生肖属相和闰月信息，支持1891-2100年。浏览器本地计算，无需联网查表。">
   <link rel="canonical" href="https://always.tools/lunar">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"Lunar Calendar Converter","applicationCategory":"UtilityApplication","operatingSystem":"Web"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"公历转农历","url":"https://always.tools/lunar","applicationCategory":"UtilityApplication","operatingSystem":"Any","inLanguage":"zh-Hans","description":"在线公历转农历工具，查询农历日期、干支纪年、生肖属相和闰月，支持1891-2100年，浏览器本地计算。","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"农历闰月是怎么回事？","acceptedAnswer":{"@type":"Answer","text":"农历按朔望月计时，12个朔望月比回归年短约11天，为保持与季节同步，约每2-3年增加一个闰月，闰月沿用前一个月的名称，如2023年有闰二月。"}},{"@type":"Question","name":"生肖按农历新年还是立春划分？","acceptedAnswer":{"@type":"Answer","text":"本工具按农历正月初一（春节）划分生肖，这也是民间最通行的算法；部分命理流派按立春划分，两者在立春到春节之间的日期上会有差异。"}},{"@type":"Question","name":"支持哪些年份范围？","acceptedAnswer":{"@type":"Answer","text":"支持公历1891年至2100年之间的日期转换，覆盖常见的生日、纪念日和历史日期查询需要。"}},{"@type":"Question","name":"转换需要联网吗？","acceptedAnswer":{"@type":"Answer","text":"不需要。农历数据表内置在页面中，转换在浏览器本地完成，加载后断网也能使用。"}}]}]}</script>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -64,6 +64,12 @@
                   color:#92400e; font-weight:700; }
     .lunar-detail { font-size:14px; color:#a16207; margin-top:6px; }
     .result-grid { margin-top:16px; display:grid; grid-template-columns:repeat(auto-fill,minmax(180px,1fr)); gap:10px; }
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .example-box { margin:12px 0; padding:14px; background:var(--card); border:1px solid var(--border); border-radius:8px; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; overflow:auto; }
     .result-item { padding:10px 14px; background:var(--card); border-radius:8px; }
     .result-item .label { font-size:11px; color:var(--text2); }
     .result-item .value { font-size:16px; font-weight:600; margin-top:2px; }
@@ -117,6 +123,30 @@
         </div>
         <div class="result-grid" id="resultGrid"></div>
       </div>
+      <section class="seo-content" aria-labelledby="lunar-guide">
+        <h2 id="lunar-guide">在线公历转农历工具</h2>
+        <p>输入公历（阳历）日期，立即查到对应的农历（阴历）日期、干支纪年和生肖属相。常用于查农历生日、挑选传统节日吉日、核对长辈生辰、填写黄历相关信息等场景，支持 1891 年至 2100 年。</p>
+        <div class="example-box">输入: 2026-02-17<br>农历: 正月初一　丙午年 · 马年（2026年春节）</div>
+        <h3>农历与公历的区别</h3>
+        <p>公历按地球绕太阳的回归年计时，一年约 365.24 天；农历按月相朔望周期计月，每月 29 或 30 天，12 个月约 354 天。为了不让月份与季节脱节，农历每 2-3 年插入一个闰月，这就是"十九年七闰"。</p>
+        <h3>干支纪年与生肖</h3>
+        <ul>
+          <li>干支由十天干（甲乙丙丁戊己庚辛壬癸）与十二地支（子丑寅卯辰巳午未申酉戌亥）组合而成，六十年一轮回，称一甲子。</li>
+          <li>十二生肖与地支一一对应：子鼠、丑牛、寅虎、卯兔、辰龙、巳蛇、午马、未羊、申猴、酉鸡、戌狗、亥猪。</li>
+          <li>本工具按正月初一（春节）切换生肖年，如 2026 年 2 月 17 日春节后进入丙午马年。</li>
+        </ul>
+        <h3>常见转换示例</h3>
+        <div class="example-box">2024-09-17 → 八月十五（中秋节）甲辰龙年<br>2025-01-29 → 正月初一（春节）乙巳蛇年<br>2023-03-22 → 闰二月初一 癸卯兔年</div>
+        <h3>隐私说明</h3>
+        <p>农历数据表内置在页面内，转换在浏览器本地完成，不依赖任何服务器接口，加载后离线也能使用。</p>
+        <h3>常见问题</h3>
+        <h3>农历闰月是怎么回事？</h3>
+        <p>12 个朔望月比回归年短约 11 天，约每 2-3 年补一个闰月，闰月沿用上月名称，如闰二月。</p>
+        <h3>生肖按春节还是立春划分？</h3>
+        <p>本工具按正月初一划分，这是最通行的民间算法；部分命理流派按立春划分，两者在立春至春节之间有差异。</p>
+        <h3>为什么农历生日每年公历日期不同？</h3>
+        <p>农历年长约 354 天，与公历相差约 11 天，叠加闰月调整，同一农历日期对应的公历日期每年都会移动。</p>
+      </section>
       <div class="related">
       <h3>You might also need:</h3>
       <div class="related-links">
@@ -142,10 +172,11 @@
     </div>
   </footer>
 <script>
-// Lunar calendar data 1891-2100: [leapMonth, newYearSolarMonth, newYearSolarDay, packedMonthData]
+// Lunar calendar data 1890-2100: [leapMonth, newYearSolarMonth, newYearSolarDay, packedMonthData]
 const LUNAR=[[2,1,21,22184],[0,2,9,21936],[6,1,30,9656],[0,2,17,9584],[0,2,6,21168],[5,1,26,43344],[0,2,13,59728],[0,2,2,27296],[3,1,22,44368],[0,2,10,43856],[8,1,30,19304],[0,2,19,19168],[0,2,8,42352],[5,1,29,21096],[0,2,16,53856],[0,2,4,55632],[4,1,25,27304],[0,2,13,22176],[0,2,2,39632],[2,1,22,19176],[0,2,10,19168],[6,1,30,42200],[0,2,18,42192],[0,2,6,53840],[5,1,26,54568],[0,2,14,46400],[0,2,3,54944],[2,1,23,38608],[0,2,11,38320],[7,2,1,18872],[0,2,20,18800],[0,2,8,42160],[5,1,28,45656],[0,2,16,27216],[0,2,5,27968],[4,1,24,44456],[0,2,13,11104],[0,2,2,38256],[2,1,23,18808],[0,2,10,18800],[6,1,30,25776],[0,2,17,54432],[0,2,6,59984],[5,1,26,27976],[0,2,14,23248],[0,2,4,11104],[3,1,24,37744],[0,2,11,37600],[7,1,31,51560],[0,2,19,51536],[0,2,8,54432],[6,1,27,55888],[0,2,15,46416],[0,2,5,22176],[4,1,25,43736],[0,2,13,9680],[0,2,2,37584],[2,1,22,51544],[0,2,10,43344],[7,1,29,46248],[0,2,17,27808],[0,2,6,46416],[5,1,27,21928],[0,2,14,19872],[0,2,3,42416],[3,1,24,21176],[0,2,12,21168],[8,1,31,43344],[0,2,18,59728],[0,2,8,27296],[6,1,28,44368],[0,2,15,43856],[0,2,5,19296],[4,1,25,42352],[0,2,13,42352],[0,2,2,21088],[3,1,21,59696],[0,2,9,55632],[7,1,30,23208],[0,2,17,22176],[0,2,6,38608],[5,1,27,19176],[0,2,15,19152],[0,2,3,42192],[4,1,23,53864],[0,2,11,53840],[8,1,31,54568],[0,2,18,46400],[0,2,7,46752],[6,1,28,38608],[0,2,16,38320],[0,2,5,18864],[4,1,25,42168],[0,2,13,42160],[10,2,2,45656],[0,2,20,27216],[0,2,9,27968],[6,1,29,44448],[0,2,17,43872],[0,2,6,38256],[5,1,27,18808],[0,2,15,18800],[0,2,4,25776],[3,1,23,27216],[0,2,10,59984],[8,1,31,27432],[0,2,19,23232],[0,2,7,43872],[5,1,28,37736],[0,2,16,37600],[0,2,5,51552],[4,1,24,54440],[0,2,12,54432],[0,2,1,55888],[2,1,22,23208],[0,2,9,22176],[7,1,29,43736],[0,2,18,9680],[0,2,7,37584],[5,1,26,51544],[0,2,14,43344],[0,2,3,46240],[4,1,23,46416],[0,2,10,44368],[9,1,31,21928],[0,2,19,19360],[0,2,8,42416],[6,1,28,21176],[0,2,16,21168],[0,2,5,43312],[4,1,25,29864],[0,2,12,27296],[0,2,1,44368],[2,1,22,19880],[0,2,10,19296],[6,1,29,42352],[0,2,17,42208],[0,2,6,53856],[5,1,26,59696],[0,2,13,54576],[0,2,3,23200],[3,1,23,27472],[0,2,11,38608],[11,1,31,19176],[0,2,19,19152],[0,2,8,42192],[6,1,28,53848],[0,2,15,53840],[0,2,4,54560],[5,1,24,55968],[0,2,12,46496],[0,2,1,22224],[2,1,22,19160],[0,2,10,18864],[7,1,30,42168],[0,2,17,42160],[0,2,6,43600],[5,1,26,46376],[0,2,14,27936],[0,2,2,44448],[3,1,23,21936],[0,2,11,37744],[8,2,1,18808],[0,2,19,18800],[0,2,8,25776],[6,1,28,27216],[0,2,15,59984],[0,2,4,27424],[4,1,24,43872],[0,2,12,43744],[0,2,2,37600],[3,1,21,51568],[0,2,9,51552],[7,1,29,54440],[0,2,17,54432],[0,2,5,55888],[5,1,26,23208],[0,2,14,22176],[0,2,3,42704],[4,1,23,21224],[0,2,11,21200],[8,1,31,43352],[0,2,19,43344],[0,2,7,46240],[6,1,27,46416],[0,2,15,44368],[0,2,5,21920],[4,1,24,42448],[0,2,12,42416],[0,2,2,21168],[3,1,22,43320],[0,2,9,26928],[7,1,29,29336],[0,2,17,27296],[0,2,6,44368],[5,1,26,19880],[0,2,14,19296],[0,2,3,42352],[4,1,24,21104],[0,2,10,53856],[8,1,30,59696],[0,2,18,54560],[0,2,7,55968],[6,1,27,27472],[0,2,15,22224],[0,2,5,19168],[4,1,25,42216],[0,2,12,42192],[0,2,1,53584],[2,1,21,55592],[0,2,9,54560]];
 
-const MIN_YEAR=1891;
+const MIN_YEAR=1891;      // earliest supported input year
+const DATA_START=1890;    // LUNAR[0] holds data for 1890 (CNY Jan 21, leap month 2)
 const STEMS=['甲','乙','丙','丁','戊','己','庚','辛','壬','癸'];
 const BRANCHES=['子','丑','寅','卯','辰','巳','午','未','申','酉','戌','亥'];
 const ZODIAC=['Rat','鼠','Cow','牛','Tiger','虎','Rabbit','兔','Dragon','龙','Snake','蛇','Horse','马','Goat','羊','Monkey','猴','Rooster','鸡','Dog','狗','Pig','猪'];
@@ -153,7 +184,7 @@ const MONTH_CN=['正月','二月','三月','四月','五月','六月','七月','
 const DAY_CN=['','初一','初二','初三','初四','初五','初六','初七','初八','初九','初十','十一','十二','十三','十四','十五','十六','十七','十八','十九','二十','廿一','廿二','廿三','廿四','廿五','廿六','廿七','廿八','廿九','三十'];
 
 function getLunarYearDays(year) {
-  var d = LUNAR[year - MIN_YEAR];
+  var d = LUNAR[year - DATA_START];
   var leap = d[0];
   var bits = d[3].toString(2).split('');
   while (bits.length < 16) bits.unshift('0');
@@ -182,7 +213,7 @@ function getLunarByBetween(year, between) {
 
 function solarToLunar(y, m, d) {
   if (y < MIN_YEAR || y > 2100) return null;
-  var data = LUNAR[y - MIN_YEAR];
+  var data = LUNAR[y - DATA_START];
   var newYearM = data[1] - 1; // 0-indexed
   var newYearD = data[2];
   var between = Math.round((new Date(y, m, d) - new Date(y, newYearM, newYearD)) / 86400000);
@@ -216,17 +247,20 @@ function convert() {
     return;
   }
   var ly = lunar[0], lm = lunar[1], ld = lunar[2];
-  var data = LUNAR[ly - MIN_YEAR];
+  var data = LUNAR[ly - DATA_START];
   var leap = data[0];
 
-  // Month name
+  // Month name — lm is the 0-based position in the lunar month sequence.
+  // When a leap month exists it occupies position `leap` and is named
+  // after the month before it (e.g. leap=2 → position 2 is 闰二月).
   var monthName;
-  if (leap && lm > leap) {
-    monthName = (lm === leap + 1 ? '闰' : '') + MONTH_CN[leap > 0 && lm > leap ? lm - 1 : lm];
+  if (leap && lm === leap) {
+    monthName = '闰' + MONTH_CN[leap - 1];
+  } else if (leap && lm > leap) {
+    monthName = MONTH_CN[lm - 1];
   } else {
     monthName = MONTH_CN[lm];
   }
-  if (leap && lm === leap + 1) monthName = '闰' + MONTH_CN[leap];
 
   // Stem-branch year
   var stemIdx = (ly - 4) % 10;
@@ -243,7 +277,7 @@ function convert() {
     '<div class="result-item"><div class="label">农历月份</div><div class="value">' + monthName + '</div></div>' +
     '<div class="result-item"><div class="label">农历日期</div><div class="value">' + DAY_CN[ld] + '</div></div>' +
     '<div class="result-item"><div class="label">生肖</div><div class="value">' + zodiac + '</div></div>' +
-    '<div class="result-item"><div class="label">闰月</div><div class="value">' + (leap ? '闰' + MONTH_CN[leap] : 'None') + '</div></div>';
+    '<div class="result-item"><div class="label">闰月</div><div class="value">' + (leap ? '闰' + MONTH_CN[leap - 1] : 'None') + '</div></div>';
 }
 
 // Init with today

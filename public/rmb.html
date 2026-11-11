@@ -5,10 +5,10 @@
   <link rel="icon" type="image/svg+xml" href="/logo.svg">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>RMB Uppercase Converter — Chinese Financial Numbers Online 人民币大写转换 | Always Tools</title>
-  <meta name="description" content="Convert numbers to Chinese financial uppercase (人民币大写). Supports up to 万亿. Free, instant, works offline.">
+  <title>人民币大写转换 - 数字金额转中文大写在线工具 | Always Tools</title>
+  <meta name="description" content="在线将数字金额转换为人民币大写（壹贰叁肆伍陆柒捌玖拾），符合财务规范，支持元角分、最大到万亿。开票据、写合同必备，浏览器本地处理。">
   <link rel="canonical" href="https://always.tools/rmb">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"RMB Uppercase Converter","applicationCategory":"FinanceApplication","operatingSystem":"Web"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"人民币大写转换","url":"https://always.tools/rmb","applicationCategory":"FinanceApplication","operatingSystem":"Any","inLanguage":"zh-Hans","description":"在线将数字金额转换为符合财务规范的人民币大写，支持元角分，最大到万亿，浏览器本地处理。","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"什么时候金额后面要加\"整\"字？","acceptedAnswer":{"@type":"Answer","text":"金额到元为止、没有角分时，大写金额后要写\"整\"（或\"正\"），如壹佰元整；有分位时不加整字。"}},{"@type":"Question","name":"为什么财务要用大写金额？","acceptedAnswer":{"@type":"Answer","text":"壹贰叁等大写数字笔画复杂，难以涂改，可以防止票据和合同金额被篡改，是会计基础工作规范的要求。"}},{"@type":"Question","name":"数字中间的零怎么写？","acceptedAnswer":{"@type":"Answer","text":"中间连续多个零只写一个零字，如1008.02写作壹仟零捌元零贰分；万位整段为零时跨级也只补一个零。"}},{"@type":"Question","name":"最大支持多大的金额？","acceptedAnswer":{"@type":"Answer","text":"本工具支持到万亿级金额，覆盖绝大多数发票、合同和银行票据的实际需要。"}}]}]}</script>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -64,6 +64,12 @@
     .result-label { font-size:12px; color:var(--text2); margin-bottom:4px; }
     .examples { margin-top:16px; }
     .examples h4 { font-size:13px; color:var(--text2); margin-bottom:8px; }
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .example-box { margin:12px 0; padding:14px; background:var(--card); border:1px solid var(--border); border-radius:8px; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; overflow:auto; }
     .ex-link { display:inline-block; margin:0 12px 4px 0; font-size:13px; color:var(--primary);
                cursor:pointer; text-decoration:underline; }
     footer { background:var(--bg); border-top:1px solid var(--border); padding:24px 0; margin-top:40px; }
@@ -96,7 +102,7 @@
   <main>
     <div class="container">
       <div class="tool-card">
-        <h1>人民币大写转换 <span style="font-size:16px;font-weight:400;color:var(--text2);">人民币大写转换</span></h1>
+        <h1>人民币大写转换 <span style="font-size:16px;font-weight:400;color:var(--text2);">数字 → 中文大写</span></h1>
         <p class="desc">将数字金额转换为中文大写，适用于支票、发票等财务场景。 所有处理均在浏览器内完成。</p>
         <input type="text" id="input" placeholder="输入金额，如 12345.67" oninput="convert()" autofocus>
         <div class="btn-row">
@@ -115,6 +121,31 @@
           <span class="ex-link" onclick="tryExample('987654321.99')">987654321.99</span>
         </div>
       </div>
+      <section class="seo-content" aria-labelledby="rmb-guide">
+        <h2 id="rmb-guide">在线人民币大写转换工具</h2>
+        <p>输入阿拉伯数字金额，立即得到符合财务规范的人民币大写金额。开具发票、填写支票、签订合同、报销单据时，大写金额可以防止数字被涂改，是会计基础工作规范的要求。支持元、角、分，最大到万亿级。</p>
+        <div class="example-box">输入: 12345.67<br>大写: 壹万贰仟叁佰肆拾伍元陆角柒分</div>
+        <h3>大写数字对照</h3>
+        <p>〇一二三四五六七八九对应的财务大写为：零、壹、贰、叁、肆、伍、陆、柒、捌、玖；单位依次为拾、佰、仟、万、亿。</p>
+        <h3>财务书写规则</h3>
+        <ul>
+          <li>金额到元为止、没有角分时，后面加"整"字，如 壹佰元整；到角为止时"整"字可写可不写，如 壹仟零壹元伍角；有分位时不加。</li>
+          <li>中间连续的零只写一个"零"，如 1008.02 → 壹仟零捌元零贰分。</li>
+          <li>角位为零而分位不为零时，元后要补"零"，如 0.05 → 伍分，但 8.05 → 捌元零伍分。</li>
+          <li>大写金额前通常加"人民币"字样，防止在前面添加数字。</li>
+        </ul>
+        <h3>常见转换示例</h3>
+        <div class="example-box">100 → 壹佰元整<br>1001.50 → 壹仟零壹元伍角<br>1000000 → 壹佰万元整<br>120000000 → 壹亿贰仟万元整</div>
+        <h3>隐私说明</h3>
+        <p>转换在浏览器本地完成，输入的金额不会上传到服务器，可放心用于真实票据金额。</p>
+        <h3>常见问题</h3>
+        <h3>什么时候加"整"字？</h3>
+        <p>金额到元为止、没有角分时写"整"（或"正"）；有分位时不加。</p>
+        <h3>为什么财务要用大写金额？</h3>
+        <p>大写数字笔画复杂、难以涂改，可防止票据金额被篡改。</p>
+        <h3>支持多大金额？</h3>
+        <p>最大支持 9,999,999,999,999.99（万亿级），覆盖日常票据需要。</p>
+      </section>
       <div class="related">
       <h3>You might also need:</h3>
       <div class="related-links">
@@ -186,7 +217,11 @@ function toRMB(num) {
     const jiao = Math.floor(decPart / 10);
     const fen = decPart % 10;
     if (jiao > 0) result += DIGITS[jiao] + '角';
-    if (fen > 0) result += DIGITS[fen] + '分';
+    if (fen > 0) {
+      // 会计规范：角位为零而分位不为零时，元后应写"零"（如 1008.02 → 壹仟零捌元零贰分）
+      if (jiao === 0 && intPart > 0) result += DIGITS[0];
+      result += DIGITS[fen] + '分';
+    }
   }
 
   return result;

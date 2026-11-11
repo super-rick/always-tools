@@ -5,10 +5,10 @@
   <link rel="icon" type="image/svg+xml" href="/logo.svg">
   <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-1139655537081165" crossorigin="anonymous"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Chinese ID Card Validator — 身份证号码校验 Online | Always Tools</title>
-  <meta name="description" content="Validate Chinese ID card numbers. Extract birth date, age, gender, and region. All processing in your browser — no data sent anywhere.">
+  <title>身份证号码校验 - 在线验证18位身份证·查年龄性别归属地 | Always Tools</title>
+  <meta name="description" content="在线校验18位身份证号码，基于GB 11643-1999国家标准验证校验位，解析出生日期、年龄、性别、归属地。纯浏览器本地处理，号码不会上传。">
   <link rel="canonical" href="https://always.tools/id-card">
-  <script type="application/ld+json">{"@context":"https://schema.org","@type":"SoftwareApplication","name":"ID Card Validator","applicationCategory":"UtilityApplication","operatingSystem":"Web"}</script>
+  <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebApplication","name":"身份证号码校验","url":"https://always.tools/id-card","applicationCategory":"UtilityApplication","operatingSystem":"Any","inLanguage":"zh-Hans","description":"在线校验18位身份证号码，验证校验位并解析出生日期、年龄、性别、归属地。所有计算在浏览器本地完成。","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}},{"@type":"FAQPage","mainEntity":[{"@type":"Question","name":"这个工具能查出身份证是谁的吗？","acceptedAnswer":{"@type":"Answer","text":"不能。本工具只做格式与校验位的数学验证，并解析号码中编码的出生日期、性别和地区信息，无法也不会查询任何真实身份数据库。"}},{"@type":"Question","name":"为什么有的身份证最后一位是X？","acceptedAnswer":{"@type":"Answer","text":"校验位按ISO 7064 MOD 11-2算法计算，结果为10时用罗马数字X表示，所以X是合法的校验位，不是错误。"}},{"@type":"Question","name":"输入的身份证号会被上传吗？","acceptedAnswer":{"@type":"Answer","text":"不会。校验算法完全在浏览器本地用JavaScript执行，号码不会发送到任何服务器。"}},{"@type":"Question","name":"校验通过是否代表身份证真实存在？","acceptedAnswer":{"@type":"Answer","text":"不代表。校验通过只说明号码符合GB 11643-1999编码规则，任何按规则构造的号码都能通过校验，真实性需向公安机关核实。"}}]}]}</script>
   <style>
     :root {
       --bg: #ffffff; --text: #1a1a2e; --text2: #6b7280;
@@ -66,6 +66,12 @@
     .result-item .value.valid { color:var(--success); }
     .result-item .value.invalid { color:var(--danger); }
     .note { margin-top:16px; font-size:12px; color:var(--text2); line-height:1.5; }
+    .seo-content { margin-top:28px; background:var(--bg); border:1px solid var(--border); border-radius:var(--radius); padding:24px; }
+    .seo-content h2 { font-size:20px; margin:0 0 12px; }
+    .seo-content h3 { font-size:16px; margin:22px 0 8px; }
+    .seo-content p, .seo-content li { color:var(--text2); font-size:14px; }
+    .seo-content ul, .seo-content ol { margin:8px 0 0 20px; }
+    .example-box { margin:12px 0; padding:14px; background:var(--card); border:1px solid var(--border); border-radius:8px; font-family:'SF Mono',Menlo,Consolas,monospace; font-size:13px; overflow:auto; }
     footer { background:var(--bg); border-top:1px solid var(--border); padding:24px 0; margin-top:40px; }
     footer .container { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; }
     footer, footer a { color:var(--text2); font-size:13px; text-decoration:none; }
@@ -96,8 +102,8 @@
   <main>
     <div class="container">
       <div class="tool-card">
-        <h1>身份证号码校验 <span style="font-size:16px;font-weight:400;color:var(--text2);">身份证号码校验</span></h1>
-        <p class="desc">校验18位身份证号码，提取出生日期、年龄、性别、地区信息。 All processing in your browser — no data is ever sent to any server.</p>
+        <h1>身份证号码校验 <span style="font-size:16px;font-weight:400;color:var(--text2);">18位·在线验证</span></h1>
+        <p class="desc">校验18位身份证号码，提取出生日期、年龄、性别、地区信息。全部在浏览器本地完成，号码不会上传到任何服务器。</p>
         <input type="text" id="input" placeholder="输入18位身份证号码..." oninput="validate()" maxlength="18" autofocus>
         <div class="btn-row">
           <button type="button" class="btn btn-secondary" onclick="clearAll()">清空</button>
@@ -107,6 +113,31 @@
           <strong>隐私说明：</strong> 本工具仅校验格式和校验位，无法验证号码是否真实存在。 校验算法基于GB 11643-1999国家标准。所有数据均在浏览器本地处理。
         </div>
       </div>
+      <section class="seo-content" aria-labelledby="id-card-guide">
+        <h2 id="id-card-guide">在线身份证号码校验工具</h2>
+        <p>本工具按照 GB 11643-1999《公民身份号码》国家标准，对18位身份证号码做格式校验与校验位验证，并解析号码中编码的出生日期、年龄、性别和省级归属地。适合开发测试、表单验证规则调试、Excel 数据清洗前的抽查等场景。</p>
+        <div class="example-box">输入: 11010519491231002X<br>校验位: ✓ 正确 (X)　出生日期: 1949-12-31　性别: 女　地区: Beijing</div>
+        <h3>18位号码的结构</h3>
+        <ul>
+          <li><strong>第1-6位</strong>：地址码，前两位对应省份（如 11=北京、44=广东、51=四川）。</li>
+          <li><strong>第7-14位</strong>：出生日期码，格式为 YYYYMMDD。</li>
+          <li><strong>第15-17位</strong>：顺序码，第17位奇数为男、偶数为女。</li>
+          <li><strong>第18位</strong>：校验位，按 ISO 7064 MOD 11-2 算法从前17位计算得出，可能是 0-9 或 X。</li>
+        </ul>
+        <h3>校验位是怎么算的</h3>
+        <p>前17位分别乘以加权因子 7-9-10-5-8-4-2-1-6-3-7-9-10-5-8-4-2 后求和，对 11 取模，再映射到 1-0-X-9-8-7-6-5-4-3-2。模值为 2 时校验位是 X——这就是部分身份证以 X 结尾的原因。</p>
+        <h3>隐私与安全</h3>
+        <p>所有校验在浏览器本地用 JavaScript 完成，输入的号码不会上传到服务器，也不会被记录。本工具只验证编码规则，不连接任何身份数据库，无法查询号码对应的真实身份。</p>
+        <h3>常见问题</h3>
+        <h3>这个工具能查出身份证是谁的吗？</h3>
+        <p>不能。工具只做数学校验和信息解析，不查询任何真实身份数据。</p>
+        <h3>为什么有的身份证最后一位是X？</h3>
+        <p>校验算法结果为 10 时用罗马数字 X 表示，X 是合法校验位，不是输入错误。</p>
+        <h3>校验通过代表号码真实存在吗？</h3>
+        <p>不代表。任何按国家标准规则构造的号码都能通过校验，真实性需向公安机关核实。</p>
+        <h3>支持15位旧身份证吗？</h3>
+        <p>不支持。15位号码是1999年前的旧格式，没有校验位，请先升位到18位再校验。</p>
+      </section>
       <div class="related">
       <h3>You might also need:</h3>
       <div class="related-links">
