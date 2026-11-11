@@ -68,11 +68,16 @@ Pages.csv 共 37 个 URL：15 个 `.html`、9 个 `www`、2 个 `http`。同一�
 
 | # | 事项 | 谁做 | 状态 | 预期 |
 |---|---|---|---|---|
-| 1 | **Cloudflare 配 www→apex 301 + Always Use HTTPS**（Rules → Redirect Rules） | 用户（或提供 API token） | ☐ 未做 | 止血权重分裂，2-4 周后 GSC URL 归一 |
-| 2 | **首页加 Guides 区块**链接 4 篇文章；GSC 对 4 个文章 URL 手动 Request Indexing | agent 改页面；Request Indexing 需用户操作 | ◐ 页面改动已完成（PR #7，2026-11-11）；Request Indexing 待用户 | 解决文章零收录 |
-| 3 | **中文工具线加码**：id-card / lunar / rmb / pinyin 中文 SEO 内容加厚（套用现有模板） | agent | ◐ 已完成待合并（PR #8，2026-11-11；顺带修复 lunar 查表偏移年/闰月命名、rmb 零分位三处 bug） | 攻 35→前 20，性价比高于英文线 |
-| 4 | **外链起步**：GitHub repo README 挂站点链接；提交 2-3 个工具目录站 | 用户 + agent | ☐ 未做 | 新域名硬伤，迟做不如早做 |
+| 1 | **www→apex 301 + http→https**（改用 Worker 实现，非面板） | agent | ✅ 已上线（PR #9，2026-11-11）；实测 `https://www.always.tools/md5`→301 裸域、`http://`→https，`https://always.tools/md5`→200 无循环 | 止血权重分裂，2-4 周后 GSC URL 归一 |
+| 2 | **首页加 Guides 区块** + GSC Request Indexing + IndexNow | agent 做页面与 IndexNow；Request Indexing 需用户 | ✅ 首页已上线（PR #7）；✅ IndexNow key+脚本已上线并提交（PR #10，guides+全站 24 URL 均 202 Accepted，2026-11-11）；◐ GSC Request Indexing 仍待用户手动 | 解决文章零收录 |
+| 3 | **中文工具线加码**：id-card / lunar / rmb / pinyin | agent | ✅ 已上线（PR #8，含 lunar/rmb 三处 bug 修复） | 攻 35→前 20 |
+| 4 | **外链起步**：README 挂链接 + 目录站提交 | 用户 + agent | ◐ README 已刷新为 18 工具+无后缀 URL+指南（PR #11）；✅ 提交文案 kit 已备（doc/backlink-kit.md）；☐ 实际目录站提交（Show HN / Product Hunt / GitHub topics）待用户 | 新域名硬伤，迟做不如早做 |
 | 5 | v1.2 / v1.3 效果继续观察至 11 月底再评判 | — | ☐ 观察中 | 10 月已在恢复通道 |
+
+### 仍需用户手动的两件事
+
+1. **GSC → URL Inspection → Request Indexing**，对 4 个指南 URL 各做一次（IndexNow 不覆盖 Google）。
+2. **目录站提交**：按 `doc/backlink-kit.md` 走——最快的是 GitHub repo 的 Website 字段 + topics（2 分钟、完全可控）。
 
 执行顺序约束：**#1 是前置项**——www 分裂不修，#3 / #5 的效果都会被稀释。#2、#3 可由 agent 直接动手（feature 分支 → PR 流程）。
 
