@@ -69,8 +69,8 @@ Pages.csv 共 37 个 URL：15 个 `.html`、9 个 `www`、2 个 `http`。同一�
 | # | 事项 | 谁做 | 状态 | 预期 |
 |---|---|---|---|---|
 | 1 | **Cloudflare 配 www→apex 301 + Always Use HTTPS**（Rules → Redirect Rules） | 用户（或提供 API token） | ☐ 未做 | 止血权重分裂，2-4 周后 GSC URL 归一 |
-| 2 | **首页加 Guides 区块**链接 4 篇文章；GSC 对 4 个文章 URL 手动 Request Indexing | agent 改页面；Request Indexing 需用户操作 | ☐ 未做 | 解决文章零收录 |
-| 3 | **中文工具线加码**：id-card / lunar / rmb / pinyin 中文 SEO 内容加厚（套用现有模板） | agent | ☐ 未做 | 攻 35→前 20，性价比高于英文线 |
+| 2 | **首页加 Guides 区块**链接 4 篇文章；GSC 对 4 个文章 URL 手动 Request Indexing | agent 改页面；Request Indexing 需用户操作 | ◐ 页面改动已完成（PR #7，2026-11-11）；Request Indexing 待用户 | 解决文章零收录 |
+| 3 | **中文工具线加码**：id-card / lunar / rmb / pinyin 中文 SEO 内容加厚（套用现有模板） | agent | ◐ 已完成待合并（PR #8，2026-11-11；顺带修复 lunar 查表偏移年/闰月命名、rmb 零分位三处 bug） | 攻 35→前 20，性价比高于英文线 |
 | 4 | **外链起步**：GitHub repo README 挂站点链接；提交 2-3 个工具目录站 | 用户 + agent | ☐ 未做 | 新域名硬伤，迟做不如早做 |
 | 5 | v1.2 / v1.3 效果继续观察至 11 月底再评判 | — | ☐ 观察中 | 10 月已在恢复通道 |
 
