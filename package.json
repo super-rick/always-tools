@@ -1,9 +1,11 @@
 {
   "name": "always-tools",
   "private": true,
+  "type": "module",
   "scripts": {
     "build": "echo 'No build step — static site'",
-    "lint": "html-validate public/*.html"
+    "lint": "html-validate public/*.html",
+    "test": "node --test \"test/**/*.test.mjs\""
   },
   "devDependencies": {
     "html-validate": "^8.0.0"
